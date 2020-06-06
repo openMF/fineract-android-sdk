@@ -1,0 +1,3 @@
+rootProject.name='Mifos Android Architecture'
+include ':app'
+include ':core'
