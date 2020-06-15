@@ -1,6 +1,8 @@
 package org.mifos.core
 
-import org.mifos.core.APIEndPoint.Companion.INSTANCE_URL
+import org.mifos.core.BaseUrl.Companion.API_ENDPOINT
+import org.mifos.core.BaseUrl.Companion.API_PATH
+import org.mifos.core.BaseUrl.Companion.PROTOCOL_HTTPS
 import org.mifos.core.services.AuthService
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
@@ -17,7 +19,7 @@ class BaseApiManager {
 
     init {
         mRetrofit = Retrofit.Builder()
-            .baseUrl(INSTANCE_URL)
+            .baseUrl(getInstanceUrl())
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -31,5 +33,9 @@ class BaseApiManager {
 
     fun getAuthApi(): AuthService? {
         return authApi
+    }
+
+    private fun getInstanceUrl(): String {
+        return PROTOCOL_HTTPS + API_ENDPOINT + API_PATH
     }
 }

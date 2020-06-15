@@ -9,7 +9,6 @@ class APIEndPoint {
 
     companion object {
         // Instance URL is temporary. It will be later moved to Shared Preferences.
-        const val INSTANCE_URL = "http://demo.openmf.org"
         const val AUTHENTICATION = "authentication"
         const val CHARGES = "charges"
         const val CENTERS = "centers"
