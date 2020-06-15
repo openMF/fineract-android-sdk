@@ -1,7 +1,7 @@
 package org.mifos.core.services
 
-import org.mifos.core.model.APIEndPoint
-import org.mifos.core.objects.user.User
+import org.mifos.core.APIEndPoint
+import org.mifos.core.models.user.User
 import retrofit2.http.POST
 import retrofit2.http.Query
 import rx.Observable

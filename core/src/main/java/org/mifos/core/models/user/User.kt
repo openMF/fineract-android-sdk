@@ -1,6 +1,6 @@
-package org.mifos.core.objects.user
+package org.mifos.core.models.user
 
-import org.mifos.core.objects.client.Role
+import org.mifos.core.models.client.Role
 
 
 /**

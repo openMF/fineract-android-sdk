@@ -1,6 +1,6 @@
 package org.mifos.core
 
-import org.mifos.core.model.APIEndPoint.Companion.INSTANCE_URL
+import org.mifos.core.APIEndPoint.Companion.INSTANCE_URL
 import org.mifos.core.services.AuthService
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory

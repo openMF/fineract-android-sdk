@@ -1,4 +1,4 @@
-package org.mifos.core.model
+package org.mifos.core
 
 /**
  * Created by grandolf49 on 06-06-2020

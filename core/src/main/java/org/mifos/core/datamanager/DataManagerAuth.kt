@@ -1,7 +1,7 @@
 package org.mifos.core.datamanager
 
 import org.mifos.core.BaseApiManager
-import org.mifos.core.objects.user.User
+import org.mifos.core.models.user.User
 import rx.Observable
 
 /**

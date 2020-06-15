@@ -1,4 +1,4 @@
-package org.mifos.core.objects.client
+package org.mifos.core.models.client
 
 /**
  * Created by grandolf49 on 06-06-2020
