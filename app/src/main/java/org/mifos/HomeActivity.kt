@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_home.*
 import org.mifos.core.MifosSdk
 import org.mifos.core.models.user.User
 import rx.android.schedulers.AndroidSchedulers
@@ -13,11 +13,11 @@ import rx.schedulers.Schedulers
 /**
  * An exmaple to illustrate how the API from the SDK will be exposed to the developers.
  * */
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home)
 
         // Additional parameters will be added to this object later
         val mifosSdk: MifosSdk = MifosSdk.Builder()
