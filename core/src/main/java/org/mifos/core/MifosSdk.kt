@@ -1,7 +1,7 @@
 package org.mifos.core
 
 import android.content.Context
-import org.mifos.core.datamanager.DataManagerAuth
+import org.mifos.core.repositories.AuthRepository
 
 /**
  * Created by grandolf49 on 06-06-2020
@@ -14,10 +14,10 @@ import org.mifos.core.datamanager.DataManagerAuth
 class MifosSdk private constructor(
     private val context: Context?
 ) {
-    private var authApi: DataManagerAuth = DataManagerAuth()
+    private var authRepository: AuthRepository = AuthRepository()
 
-    fun getAuthApi(): DataManagerAuth {
-        return authApi
+    fun getAuthApi(): AuthRepository {
+        return authRepository
     }
 
     /**

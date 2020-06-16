@@ -6,9 +6,7 @@ import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.mifos.core.MifosSdk
-import org.mifos.core.datamanager.DataManagerAuth
 import org.mifos.core.models.user.User
-import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
