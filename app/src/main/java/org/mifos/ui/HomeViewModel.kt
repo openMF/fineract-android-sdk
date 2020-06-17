@@ -1,6 +1,8 @@
 package org.mifos.ui
 
 import android.content.Context
+import android.view.View.GONE
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.ViewModel
 import org.mifos.core.ApiEndPoint
@@ -21,13 +23,20 @@ class HomeViewModel : ViewModel() {
 
     private var mifosSdk: MifosSdk = MifosSdk.Builder().setContext(context).build()
 
-    fun testApi(apiEndPoint: String?, textViewApiResponse: TextView) {
+    fun testApi(
+        apiEndPoint: String?,
+        textViewApiResponse: TextView,
+        pbApiResponse: ProgressBar
+    ) {
         when (apiEndPoint) {
-            ApiEndPoint.AUTHENTICATION -> login(textViewApiResponse)
+            ApiEndPoint.AUTHENTICATION -> login(textViewApiResponse, pbApiResponse)
         }
     }
 
-    private fun login(textViewApiResponse: TextView) {
+    private fun login(
+        textViewApiResponse: TextView,
+        pbApiResponse: ProgressBar
+    ) {
         mifosSdk.getAuthApi().login("mifos", "password")
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
@@ -37,6 +46,9 @@ class HomeViewModel : ViewModel() {
                 },
                 { error ->
                     textViewApiResponse.text = error.toString()
+                },
+                {
+                    pbApiResponse.visibility = GONE
                 }
             )
     }

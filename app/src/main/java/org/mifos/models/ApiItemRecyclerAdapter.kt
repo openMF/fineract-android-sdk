@@ -6,7 +6,8 @@ import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.layout_api_item.view.*
@@ -40,10 +41,16 @@ class ApiItemRecyclerAdapter(
         val apiItem: ApiItemModel = apiItemsList[position]
         holder.tv_api_name.text = apiItem.apiName
         holder.tv_api_description.text = apiItem.apiDescription
-        holder.tv_api_response.text = apiItem.apiResponse
+        //holder.tv_api_response.text = apiItem.apiResponse
         holder.btn_test_api.setOnClickListener {
             holder.ll_api_response.visibility = VISIBLE
-            homeViewModel.testApi(apiItem.apiEndPoint, holder.tv_api_response)
+            holder.pb_api_response.visibility = VISIBLE
+            holder.tv_api_response.text = context.getString(R.string.api_response)
+            homeViewModel.testApi(
+                apiItem.apiEndPoint,
+                holder.tv_api_response,
+                holder.pb_api_response
+            )
         }
     }
 
@@ -53,7 +60,8 @@ class ApiItemRecyclerAdapter(
         var tv_api_response: TextView = itemView.tv_api_response
         var btn_test_api: Button = itemView.btn_test_api
         var btn_copy_response: Button = itemView.btn_copy_response
-        var ll_api_response: LinearLayout = itemView.ll_api_response
+        var ll_api_response: RelativeLayout = itemView.ll_api_response
+        var pb_api_response: ProgressBar = itemView.pb_api_response
     }
 
 }

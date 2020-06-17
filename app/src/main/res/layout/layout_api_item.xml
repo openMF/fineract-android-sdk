@@ -48,14 +48,14 @@
             android:layout_alignParentEnd="true"
             android:text="@string/test_api" />
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/ll_api_response"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ll_header"
             android:layout_marginTop="@dimen/relative_layout_margin_top"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/tv_api_response"
@@ -69,10 +69,19 @@
                 android:id="@+id/btn_copy_response"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/tv_api_response"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/layout_margin_default"
                 android:text="@string/copy_response" />
 
-        </LinearLayout>
+            <ProgressBar
+                android:id="@+id/pb_api_response"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

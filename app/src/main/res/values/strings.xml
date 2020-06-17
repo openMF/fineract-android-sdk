@@ -3,6 +3,6 @@
     <string name="api_name">API Name</string>
     <string name="api_description">API Description</string>
     <string name="test_api">Test API</string>
-    <string name="api_response">API Response</string>
+    <string name="api_response">Loading API Response…</string>
     <string name="copy_response">Copy Response</string>
 </resources>
