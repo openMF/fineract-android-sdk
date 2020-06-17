@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="recyclerview_default">8dp</dimen>
+    <dimen name="textview_title_large">24sp</dimen>
+    <dimen name="relative_layout_default">8dp</dimen>
+    <dimen name="textview_title_medium">20sp</dimen>
+    <dimen name="textview_margin_default">8dp</dimen>
+    <dimen name="relative_layout_margin_top">8dp</dimen>
+    <dimen name="layout_margin_default">8dp</dimen>
+    <dimen name="textview_content">16sp</dimen>
+</resources>

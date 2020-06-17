@@ -5,7 +5,7 @@ package org.mifos.core
  *
  * This class contains all the Constants for API End Points
  */
-class APIEndPoint {
+class ApiEndPoint {
 
     companion object {
         // Instance URL is temporary. It will be later moved to Shared Preferences.

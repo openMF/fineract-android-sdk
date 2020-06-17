@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="@dimen/cardview_default_elevation"
+    app:cardPreventCornerOverlap="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/relative_layout_default"
+        android:animateLayoutChanges="true">
+
+        <LinearLayout
+            android:id="@+id/ll_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/btn_test_api"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_api_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/api_name"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textview_title_medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_api_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textview_margin_default"
+                android:text="@string/api_description"
+                android:textSize="@dimen/textview_content" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_test_api"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="@string/test_api" />
+
+        <LinearLayout
+            android:id="@+id/ll_api_response"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_header"
+            android:layout_marginTop="@dimen/relative_layout_margin_top"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/tv_api_response"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/layout_margin_default"
+                android:text="@string/api_response"
+                android:textSize="@dimen/textview_content" />
+
+            <Button
+                android:id="@+id/btn_copy_response"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/copy_response" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
