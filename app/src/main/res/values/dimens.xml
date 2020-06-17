@@ -7,5 +7,6 @@
     <dimen name="textview_margin_default">8dp</dimen>
     <dimen name="relative_layout_margin_top">8dp</dimen>
     <dimen name="layout_margin_default">8dp</dimen>
+    <dimen name="layout_margin_large">16dp</dimen>
     <dimen name="textview_content">16sp</dimen>
 </resources>

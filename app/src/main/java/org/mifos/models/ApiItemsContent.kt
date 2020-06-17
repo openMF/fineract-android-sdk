@@ -13,38 +13,151 @@ class ApiItemsContent {
 
         fun getApiItemsContent(): MutableList<ApiItemModel> {
             val apiList: MutableList<ApiItemModel> = arrayListOf()
-            val apiItemModel1 = ApiItemModel(
-                "Authentication API",
-                "Authenticate user who is not connected to any service",
-                "Authenticated successfully or not",
-                ApiEndPoint.AUTHENTICATION,
-                null
+
+            apiList.add(
+                ApiItemModel(
+                    "Authentication API",
+                    "Authenticate user who is not connected to any service",
+                    "Authenticated successfully or not",
+                    ApiEndPoint.AUTHENTICATION,
+                    null
+                )
             )
-            val apiItemModel2 = ApiItemModel(
-                "Client API",
-                "Authenticate user who is not connected to any service",
-                "Authenticated successfully or not",
-                ApiEndPoint.CLIENTS,
-                null
+            apiList.add(
+                ApiItemModel(
+                    "Client API",
+                    "Retrieve a client",
+                    "Client exists or not",
+                    ApiEndPoint.CLIENTS,
+                    null
+                )
             )
-            val apiItemModel3 = ApiItemModel(
-                "DataTables API",
-                "Authenticate user who is not connected to any service",
-                "Authenticated successfully or not",
-                ApiEndPoint.DATATABLES,
-                null
+            apiList.add(
+                ApiItemModel(
+                    "Loan Accounts API",
+                    "Retrieve loan account of a user",
+                    "Loan account exists or not",
+                    ApiEndPoint.DATATABLES,
+                    null
+                )
             )
-            val apiItemModel4 = ApiItemModel(
-                "Savings Account API",
-                "Authenticate user who is not connected to any service",
-                "Authenticated successfully or not",
-                ApiEndPoint.SAVINGSACCOUNTS,
-                null
+            apiList.add(
+                ApiItemModel(
+                    "Savings Account API",
+                    "Retrieve savings account of a user",
+                    "Savings account exists or not",
+                    ApiEndPoint.SAVINGSACCOUNTS,
+                    null
+                )
             )
-            apiList.add(apiItemModel1)
-            apiList.add(apiItemModel2)
-            apiList.add(apiItemModel3)
-            apiList.add(apiItemModel4)
+            apiList.add(
+                ApiItemModel(
+                    "Authentication API",
+                    "Authenticate user who is not connected to any service",
+                    "Authenticated successfully or not",
+                    ApiEndPoint.AUTHENTICATION,
+                    null
+                )
+            )
+            apiList.add(
+                ApiItemModel(
+                    "Client API",
+                    "Retrieve a client",
+                    "Client exists or not",
+                    ApiEndPoint.CLIENTS,
+                    null
+                )
+            )
+            apiList.add(
+                ApiItemModel(
+                    "Loan Accounts API",
+                    "Retrieve loan account of a user",
+                    "Loan account exists or not",
+                    ApiEndPoint.DATATABLES,
+                    null
+                )
+            )
+            apiList.add(
+                ApiItemModel(
+                    "Savings Account API",
+                    "Retrieve savings account of a user",
+                    "Savings account exists or not",
+                    ApiEndPoint.SAVINGSACCOUNTS,
+                    null
+                )
+            )
+            apiList.add(
+                ApiItemModel(
+                    "Authentication API",
+                    "Authenticate user who is not connected to any service",
+                    "Authenticated successfully or not",
+                    ApiEndPoint.AUTHENTICATION,
+                    null
+                )
+            )
+            apiList.add(
+                ApiItemModel(
+                    "Client API",
+                    "Retrieve a client",
+                    "Client exists or not",
+                    ApiEndPoint.CLIENTS,
+                    null
+                )
+            )
+            apiList.add(
+                ApiItemModel(
+                    "Loan Accounts API",
+                    "Retrieve loan account of a user",
+                    "Loan account exists or not",
+                    ApiEndPoint.DATATABLES,
+                    null
+                )
+            )
+            apiList.add(
+                ApiItemModel(
+                    "Savings Account API",
+                    "Retrieve savings account of a user",
+                    "Savings account exists or not",
+                    ApiEndPoint.SAVINGSACCOUNTS,
+                    null
+                )
+            )
+            apiList.add(
+                ApiItemModel(
+                    "Authentication API",
+                    "Authenticate user who is not connected to any service",
+                    "Authenticated successfully or not",
+                    ApiEndPoint.AUTHENTICATION,
+                    null
+                )
+            )
+            apiList.add(
+                ApiItemModel(
+                    "Client API",
+                    "Retrieve a client",
+                    "Client exists or not",
+                    ApiEndPoint.CLIENTS,
+                    null
+                )
+            )
+            apiList.add(
+                ApiItemModel(
+                    "Loan Accounts API",
+                    "Retrieve loan account of a user",
+                    "Loan account exists or not",
+                    ApiEndPoint.DATATABLES,
+                    null
+                )
+            )
+            apiList.add(
+                ApiItemModel(
+                    "Savings Account API",
+                    "Retrieve savings account of a user",
+                    "Savings account exists or not",
+                    ApiEndPoint.SAVINGSACCOUNTS,
+                    null
+                )
+            )
 
             return apiList
         }
