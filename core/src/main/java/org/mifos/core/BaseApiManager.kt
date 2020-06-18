@@ -3,6 +3,7 @@ package org.mifos.core
 import org.mifos.core.BaseUrl.Companion.API_ENDPOINT
 import org.mifos.core.BaseUrl.Companion.API_PATH
 import org.mifos.core.BaseUrl.Companion.PROTOCOL_HTTPS
+import org.mifos.core.MifosOkHttpClient.getUnsafeOkHttpClient
 import org.mifos.core.services.AuthService
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
@@ -23,6 +24,7 @@ class BaseApiManager {
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .client(getUnsafeOkHttpClient())
             .build()
         init()
     }
