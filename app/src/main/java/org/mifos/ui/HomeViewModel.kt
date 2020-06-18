@@ -43,9 +43,12 @@ class HomeViewModel : ViewModel() {
             ?.subscribe(
                 { user ->
                     textViewApiResponse.text = user.toString()
+                    homeListener?.onSuccess("Successful")
                 },
                 { error ->
                     textViewApiResponse.text = error.toString()
+                    pbApiResponse.visibility = GONE
+                    homeListener?.onFailure(error.toString())
                 },
                 {
                     pbApiResponse.visibility = GONE
