@@ -2,6 +2,8 @@ package org.mifos.core
 
 /**
  * Created by grandolf49 on 15-06-2020
+ *
+ * A class to store default values of the Base URLs
  */
 class BaseUrl {
     companion object {

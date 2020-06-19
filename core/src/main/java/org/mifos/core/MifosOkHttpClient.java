@@ -13,6 +13,8 @@ import okhttp3.OkHttpClient;
 
 /**
  * Created by grandolf49 on 18-06-2020
+ * <p>
+ * OkHttpClient to disable SSL certificate validation in Retrofit
  */
 class MifosOkHttpClient {
 

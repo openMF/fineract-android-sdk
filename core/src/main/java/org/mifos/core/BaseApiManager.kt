@@ -12,6 +12,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 /**
  * Created by grandolf49 on 06-06-2020
+ *
+ * A class to provide the Retrofit service to the SDK
  */
 class BaseApiManager {
 

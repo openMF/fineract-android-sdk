@@ -6,6 +6,8 @@ import rx.Observable
 
 /**
  * Created by grandolf49 on 06-06-2020
+ *
+ * Repository class to provide data retrieval from AuthService
  */
 class AuthRepository {
 
