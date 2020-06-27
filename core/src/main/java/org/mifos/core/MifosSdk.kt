@@ -1,7 +1,7 @@
 package org.mifos.core
 
 import android.content.Context
-import org.mifos.core.repositories.AuthRepository
+import org.mifos.core.viewmodels.AuthViewModel
 
 /**
  * Created by grandolf49 on 06-06-2020
@@ -14,10 +14,15 @@ import org.mifos.core.repositories.AuthRepository
 class MifosSdk private constructor(
     private val context: Context?
 ) {
-    private var authRepository: AuthRepository = AuthRepository()
+    companion object {
+        const val RESPONSE_TYPE_LIVEDATA = "livedata"
+        const val RESPONSE_TYPE_OBSERVABLE = "observable"
+    }
 
-    fun getAuthApi(): AuthRepository {
-        return authRepository
+    private var authViewModel: AuthViewModel = AuthViewModel()
+
+    fun getAuthApi(): AuthViewModel {
+        return authViewModel
     }
 
     /**

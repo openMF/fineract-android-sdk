@@ -1,20 +1,24 @@
 package org.mifos.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View.GONE
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.ViewModel
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import org.mifos.core.ApiEndPoint
 import org.mifos.core.MifosSdk
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import org.mifos.core.models.user.User
 
 /**
  * Created by grandolf49 on 16-06-2020
  *
  * ViewModel class for HomeActivity. An example to illustrate how the SDK should be used.
  */
+@Suppress("UNCHECKED_CAST")
 class HomeViewModel : ViewModel() {
 
     var homeListener: HomeListener? = null
@@ -33,12 +37,16 @@ class HomeViewModel : ViewModel() {
         }
     }
 
+    @SuppressLint("CheckResult")
     private fun login(
         textViewApiResponse: TextView,
         pbApiResponse: ProgressBar
     ) {
-        mifosSdk.getAuthApi().login("mifos", "password")
-            ?.observeOn(AndroidSchedulers.mainThread())
+        val response: Observable<User> =
+            mifosSdk.getAuthApi().setResponseType(MifosSdk.RESPONSE_TYPE_OBSERVABLE)
+                .login("mifos", "password") as Observable<User>
+
+        response.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
             ?.subscribe(
                 { user ->
