@@ -39,29 +39,29 @@ class ApiItemRecyclerAdapter(
 
     override fun onBindViewHolder(holder: ApiItemViewHolder, position: Int) {
         val apiItem: ApiItemModel = apiItemsList[position]
-        holder.tv_api_name.text = apiItem.apiName
-        holder.tv_api_description.text = apiItem.apiDescription
+        holder.tvApiName.text = apiItem.apiName
+        holder.tvApiDescription.text = apiItem.apiDescription
         //holder.tv_api_response.text = apiItem.apiResponse
-        holder.btn_test_api.setOnClickListener {
-            holder.ll_api_response.visibility = VISIBLE
-            holder.pb_api_response.visibility = VISIBLE
-            holder.tv_api_response.text = context.getString(R.string.api_response)
+        holder.btnTestApi.setOnClickListener {
+            holder.llApiResponse.visibility = VISIBLE
+            holder.pbApiResponse.visibility = VISIBLE
+            holder.tvApiResponse.text = context.getString(R.string.api_response)
             homeViewModel.testApi(
                 apiItem.apiEndPoint,
-                holder.tv_api_response,
-                holder.pb_api_response
+                holder.tvApiResponse,
+                holder.pbApiResponse
             )
         }
     }
 
     class ApiItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var tv_api_name: TextView = itemView.tv_api_name
-        var tv_api_description: TextView = itemView.tv_api_description
-        var tv_api_response: TextView = itemView.tv_api_response
-        var btn_test_api: Button = itemView.btn_test_api
+        var tvApiName: TextView = itemView.tv_api_name
+        var tvApiDescription: TextView = itemView.tv_api_description
+        var tvApiResponse: TextView = itemView.tv_api_response
+        var btnTestApi: Button = itemView.btn_test_api
         var btn_copy_response: Button = itemView.btn_copy_response
-        var ll_api_response: RelativeLayout = itemView.ll_api_response
-        var pb_api_response: ProgressBar = itemView.pb_api_response
+        var llApiResponse: RelativeLayout = itemView.ll_api_response
+        var pbApiResponse: ProgressBar = itemView.pb_api_response
     }
 
 }
