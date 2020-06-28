@@ -5,7 +5,6 @@ import android.content.Context
 import android.view.View.GONE
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,7 +12,6 @@ import io.reactivex.schedulers.Schedulers
 import org.mifos.core.ApiEndPoints
 import org.mifos.core.MifosSdk
 import org.mifos.core.models.user.User
-import org.mifos.core.viewmodels.base.BaseViewModel.Companion.toLiveData
 
 /**
  * Created by grandolf49 on 16-06-2020
@@ -68,8 +66,9 @@ class HomeViewModel : ViewModel() {
 
         /**
          * Get response in the form of LiveData
+         *
+         * val response1: LiveData<User>? = mifosSdk.getAuthApi().login("mifos", "password")?.toLiveData()
          */
-        val response1: LiveData<User>? =
-            mifosSdk.getAuthApi().login("mifos", "password")?.toLiveData()
+
     }
 }
