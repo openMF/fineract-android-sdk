@@ -1,4 +1,4 @@
-package org.mifos.core
+package org.mifos.core.utils
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams

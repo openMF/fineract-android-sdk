@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import org.mifos.core.ApiEndPoint
+import org.mifos.core.ApiEndPoints
 import org.mifos.core.MifosSdk
 import org.mifos.core.models.user.User
 
@@ -33,7 +33,7 @@ class HomeViewModel : ViewModel() {
         pbApiResponse: ProgressBar
     ) {
         when (apiEndPoint) {
-            ApiEndPoint.AUTHENTICATION -> login(textViewApiResponse, pbApiResponse)
+            ApiEndPoints.AUTHENTICATION -> login(textViewApiResponse, pbApiResponse)
         }
     }
 

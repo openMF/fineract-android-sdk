@@ -1,6 +1,6 @@
 package org.mifos.models
 
-import org.mifos.core.ApiEndPoint
+import org.mifos.core.ApiEndPoints
 
 /**
  * Created by grandolf49 on 17-06-2020
@@ -19,7 +19,7 @@ class ApiItemsContent {
                     "Authentication API",
                     "Authenticate user who is not connected to any service",
                     "Authenticated successfully or not",
-                    ApiEndPoint.AUTHENTICATION,
+                    ApiEndPoints.AUTHENTICATION,
                     null
                 )
             )
@@ -28,7 +28,7 @@ class ApiItemsContent {
                     "Client API",
                     "Retrieve a client",
                     "Client exists or not",
-                    ApiEndPoint.CLIENTS,
+                    ApiEndPoints.CLIENTS,
                     null
                 )
             )
@@ -37,7 +37,7 @@ class ApiItemsContent {
                     "Loan Accounts API",
                     "Retrieve loan account of a user",
                     "Loan account exists or not",
-                    ApiEndPoint.DATATABLES,
+                    ApiEndPoints.DATATABLES,
                     null
                 )
             )
@@ -46,7 +46,7 @@ class ApiItemsContent {
                     "Savings Account API",
                     "Retrieve savings account of a user",
                     "Savings account exists or not",
-                    ApiEndPoint.SAVINGSACCOUNTS,
+                    ApiEndPoints.SAVINGSACCOUNTS,
                     null
                 )
             )
@@ -55,7 +55,7 @@ class ApiItemsContent {
                     "Authentication API",
                     "Authenticate user who is not connected to any service",
                     "Authenticated successfully or not",
-                    ApiEndPoint.AUTHENTICATION,
+                    ApiEndPoints.AUTHENTICATION,
                     null
                 )
             )
@@ -64,7 +64,7 @@ class ApiItemsContent {
                     "Client API",
                     "Retrieve a client",
                     "Client exists or not",
-                    ApiEndPoint.CLIENTS,
+                    ApiEndPoints.CLIENTS,
                     null
                 )
             )
@@ -73,7 +73,7 @@ class ApiItemsContent {
                     "Loan Accounts API",
                     "Retrieve loan account of a user",
                     "Loan account exists or not",
-                    ApiEndPoint.DATATABLES,
+                    ApiEndPoints.DATATABLES,
                     null
                 )
             )
@@ -82,7 +82,7 @@ class ApiItemsContent {
                     "Savings Account API",
                     "Retrieve savings account of a user",
                     "Savings account exists or not",
-                    ApiEndPoint.SAVINGSACCOUNTS,
+                    ApiEndPoints.SAVINGSACCOUNTS,
                     null
                 )
             )
@@ -91,7 +91,7 @@ class ApiItemsContent {
                     "Authentication API",
                     "Authenticate user who is not connected to any service",
                     "Authenticated successfully or not",
-                    ApiEndPoint.AUTHENTICATION,
+                    ApiEndPoints.AUTHENTICATION,
                     null
                 )
             )
@@ -100,7 +100,7 @@ class ApiItemsContent {
                     "Client API",
                     "Retrieve a client",
                     "Client exists or not",
-                    ApiEndPoint.CLIENTS,
+                    ApiEndPoints.CLIENTS,
                     null
                 )
             )
@@ -109,7 +109,7 @@ class ApiItemsContent {
                     "Loan Accounts API",
                     "Retrieve loan account of a user",
                     "Loan account exists or not",
-                    ApiEndPoint.DATATABLES,
+                    ApiEndPoints.DATATABLES,
                     null
                 )
             )
@@ -118,7 +118,7 @@ class ApiItemsContent {
                     "Savings Account API",
                     "Retrieve savings account of a user",
                     "Savings account exists or not",
-                    ApiEndPoint.SAVINGSACCOUNTS,
+                    ApiEndPoints.SAVINGSACCOUNTS,
                     null
                 )
             )
@@ -127,7 +127,7 @@ class ApiItemsContent {
                     "Authentication API",
                     "Authenticate user who is not connected to any service",
                     "Authenticated successfully or not",
-                    ApiEndPoint.AUTHENTICATION,
+                    ApiEndPoints.AUTHENTICATION,
                     null
                 )
             )
@@ -136,7 +136,7 @@ class ApiItemsContent {
                     "Client API",
                     "Retrieve a client",
                     "Client exists or not",
-                    ApiEndPoint.CLIENTS,
+                    ApiEndPoints.CLIENTS,
                     null
                 )
             )
@@ -145,7 +145,7 @@ class ApiItemsContent {
                     "Loan Accounts API",
                     "Retrieve loan account of a user",
                     "Loan account exists or not",
-                    ApiEndPoint.DATATABLES,
+                    ApiEndPoints.DATATABLES,
                     null
                 )
             )
@@ -154,7 +154,7 @@ class ApiItemsContent {
                     "Savings Account API",
                     "Retrieve savings account of a user",
                     "Savings account exists or not",
-                    ApiEndPoint.SAVINGSACCOUNTS,
+                    ApiEndPoints.SAVINGSACCOUNTS,
                     null
                 )
             )

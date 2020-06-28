@@ -1,4 +1,4 @@
-package org.mifos.core;
+package org.mifos.core.utils;
 
 import java.security.cert.CertificateException;
 
@@ -16,7 +16,7 @@ import okhttp3.OkHttpClient;
  * <p>
  * OkHttpClient to disable SSL certificate validation in Retrofit
  */
-class MifosOkHttpClient {
+public class MifosOkHttpClient {
 
     public static OkHttpClient getUnsafeOkHttpClient() {
         try {

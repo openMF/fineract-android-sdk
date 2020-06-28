@@ -7,9 +7,12 @@ import org.mifos.core.models.user.User
 /**
  * Created by grandolf49 on 06-06-2020
  *
- * Repository class to provide data retrieval from AuthService
+ * A Singleton Repository class to provide data retrieval from AuthService
  */
-class AuthRepository {
+class AuthRepository private constructor() {
+    companion object {
+        val instance = AuthRepository()
+    }
 
     // This will later be replaced by Dependency Injection
     private var baseApiManager: BaseApiManager = BaseApiManager()

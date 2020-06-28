@@ -5,16 +5,7 @@ package org.mifos.core.models.client
  */
 data class Role(
     var id: Int = 0,
-    var name: String? = null,
-    var description: String? = null,
+    var name: String = "",
+    var description: String = "",
     var disabled: Boolean = false
-) {
-
-    override fun toString(): String {
-        return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}'
-    }
-}
+)

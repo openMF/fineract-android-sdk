@@ -5,10 +5,9 @@ package org.mifos.core
  *
  * This class contains all the Constants for API End Points
  */
-class ApiEndPoint {
+class ApiEndPoints {
 
     companion object {
-        // Instance URL is temporary. It will be later moved to Shared Preferences.
         const val AUTHENTICATION = "authentication"
         const val CHARGES = "charges"
         const val CENTERS = "centers"

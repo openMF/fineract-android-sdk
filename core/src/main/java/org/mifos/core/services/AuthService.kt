@@ -1,7 +1,7 @@
 package org.mifos.core.services
 
 import io.reactivex.Flowable
-import org.mifos.core.ApiEndPoint
+import org.mifos.core.ApiEndPoints
 import org.mifos.core.models.user.User
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -13,7 +13,7 @@ import retrofit2.http.Query
  * LiveData depending on the user requirement
  */
 interface AuthService {
-    @POST(ApiEndPoint.AUTHENTICATION)
+    @POST(ApiEndPoints.AUTHENTICATION)
     fun authenticate(
         @Query("username") username: String,
         @Query("password") password: String

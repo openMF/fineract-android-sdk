@@ -18,17 +18,7 @@ data class User(
     val roles: List<Role> = ArrayList(),
     val permissions: List<String> = ArrayList()
 ) {
-
-    override fun toString(): String {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", userId=" + userId +
-                ", base64EncodedAuthenticationKey='" + base64EncodedAuthenticationKey + '\'' +
-                ", authenticated=" + authenticated +
-                ", officeId=" + officeId +
-                ", officeName='" + officeName + '\'' +
-                ", roles=" + roles +
-                ", permissions=" + permissions +
-                '}'
+    companion object {
+        val AUTHENTICATION_KEY = "authenticationKey"
     }
 }
