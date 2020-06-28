@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.View.GONE
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,6 +13,7 @@ import io.reactivex.schedulers.Schedulers
 import org.mifos.core.ApiEndPoints
 import org.mifos.core.MifosSdk
 import org.mifos.core.models.user.User
+import org.mifos.core.viewmodels.base.BaseViewModel.Companion.toLiveData
 
 /**
  * Created by grandolf49 on 16-06-2020
@@ -42,11 +44,12 @@ class HomeViewModel : ViewModel() {
         textViewApiResponse: TextView,
         pbApiResponse: ProgressBar
     ) {
-        val response: Observable<User> =
-            mifosSdk.getAuthApi().setResponseType(MifosSdk.RESPONSE_TYPE_OBSERVABLE)
-                .login("mifos", "password") as Observable<User>
-
-        response.observeOn(AndroidSchedulers.mainThread())
+        /**
+         * Get response in the form of Observable
+         */
+        val response: Observable<User>? =
+            mifosSdk.getAuthApi().login("mifos", "password")?.toObservable()
+        response?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
             ?.subscribe(
                 { user ->
@@ -62,5 +65,11 @@ class HomeViewModel : ViewModel() {
                     pbApiResponse.visibility = GONE
                 }
             )
+
+        /**
+         * Get response in the form of LiveData
+         */
+        val response1: LiveData<User>? =
+            mifosSdk.getAuthApi().login("mifos", "password")?.toLiveData()
     }
 }
