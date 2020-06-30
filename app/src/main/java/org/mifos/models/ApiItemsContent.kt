@@ -1,6 +1,6 @@
 package org.mifos.models
 
-import org.mifos.core.ApiEndPoints
+import org.mifos.core.apimanager.ApiEndPoints
 
 /**
  * Created by grandolf49 on 17-06-2020

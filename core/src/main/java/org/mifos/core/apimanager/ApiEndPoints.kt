@@ -1,4 +1,4 @@
-package org.mifos.core
+package org.mifos.core.apimanager
 
 /**
  * Created by grandolf49 on 06-06-2020

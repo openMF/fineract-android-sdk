@@ -1,7 +1,7 @@
 package org.mifos.core.repositories
 
 import io.reactivex.Flowable
-import org.mifos.core.BaseApiManager
+import org.mifos.core.apimanager.BaseApiManager
 import org.mifos.core.models.user.User
 
 /**
@@ -15,7 +15,8 @@ class AuthRepository private constructor() {
     }
 
     // This will later be replaced by Dependency Injection
-    private var baseApiManager: BaseApiManager = BaseApiManager()
+    private var baseApiManager: BaseApiManager =
+        BaseApiManager()
 
     fun login(username: String, password: String): Flowable<User>? {
         return baseApiManager.getAuthApi()?.authenticate(username, password)

@@ -2,8 +2,8 @@ package org.mifos.core.models.accounts.savings
 
 import android.os.Parcel
 import android.os.Parcelable
-import org.mifos.core.ApiEndPoints.Companion.RECURRING_ACCOUNTS
-import org.mifos.core.ApiEndPoints.Companion.SAVINGSACCOUNTS
+import org.mifos.core.apimanager.ApiEndPoints.Companion.RECURRING_ACCOUNTS
+import org.mifos.core.apimanager.ApiEndPoints.Companion.SAVINGSACCOUNTS
 
 /**
  * Created by grandolf49 on 28-06-2020

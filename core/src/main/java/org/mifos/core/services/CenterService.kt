@@ -1,7 +1,7 @@
 package org.mifos.core.services
 
 import io.reactivex.Observable
-import org.mifos.core.ApiEndPoints.Companion.CENTERS
+import org.mifos.core.apimanager.ApiEndPoints.Companion.CENTERS
 import org.mifos.core.models.GenericResponse
 import org.mifos.core.models.Payload
 import org.mifos.core.models.SaveResponse

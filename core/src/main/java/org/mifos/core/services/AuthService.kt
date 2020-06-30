@@ -1,7 +1,7 @@
 package org.mifos.core.services
 
 import io.reactivex.Flowable
-import org.mifos.core.ApiEndPoints
+import org.mifos.core.apimanager.ApiEndPoints
 import org.mifos.core.models.user.User
 import retrofit2.http.POST
 import retrofit2.http.Query
