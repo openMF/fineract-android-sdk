@@ -2,6 +2,7 @@ package org.mifos.core.apimanager
 
 import android.annotation.SuppressLint
 import okhttp3.OkHttpClient
+import org.mifos.core.preferencesmanager.PreferenceManager.Companion.AUTH_TOKEN
 import java.security.SecureRandom
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
@@ -38,6 +39,13 @@ object MifosOkHttpClient {
             OkHttpClient.Builder()
                 .sslSocketFactory(sslContext.socketFactory, trustAllCerts[0] as X509TrustManager)
                 .hostnameVerifier { _, _ -> true }
+                .addInterceptor { chain ->
+                    val newRequest =
+                        chain.request().newBuilder()
+                            .addHeader("Authorization", "Bearer $AUTH_TOKEN")
+                            .build()
+                    chain.proceed(newRequest)
+                }
                 .build()
         } catch (e: Exception) {
             throw RuntimeException(e)
