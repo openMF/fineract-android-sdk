@@ -14,10 +14,6 @@ import org.mifos.core.viewmodels.AuthViewModel
 class MifosSdk private constructor(
     private val context: Context?
 ) {
-    companion object {
-        const val RESPONSE_TYPE_LIVEDATA = "livedata"
-        const val RESPONSE_TYPE_OBSERVABLE = "observable"
-    }
 
     private var authViewModel: AuthViewModel = AuthViewModel()
 
