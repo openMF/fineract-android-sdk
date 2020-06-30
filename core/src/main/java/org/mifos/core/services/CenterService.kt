@@ -32,7 +32,8 @@ interface CenterService {
     fun getCenterAccounts(@Path("centerId") centerId: Int): Observable<CenterAccounts?>?
 
     @GET("$CENTERS/{centerId}?associations=groupMembers,collectionMeetingCalendar")
-    fun getCenterWithGroupMembersAndCollectionMeetingCalendar(@Path("centerId") centerId: Int): Observable<CenterWithAssociations?>?
+    fun getCenterWithGroupMembersAndCollectionMeetingCalendar(@Path("centerId") centerId: Int):
+            Observable<CenterWithAssociations?>?
 
     @GET(CENTERS)
     fun getAllCentersInOffice(
@@ -61,12 +62,6 @@ interface CenterService {
         @Body collectionSheetPayload: CollectionSheetPayload?
     ): Observable<SaveResponse?>?
 
-
-    /*@POST(APIEndPoint.CLIENTS + "")
-    void uploadNewClientDetails();*/
-
-    /*@POST(APIEndPoint.CLIENTS + "")
-    void uploadNewClientDetails();*/
     @POST(CENTERS)
     fun createCenter(@Body centerPayload: CenterPayload?): Observable<SaveResponse?>?
 
@@ -82,7 +77,7 @@ interface CenterService {
 
     /**
      * This is the service to activate the center
-     * REST ENT POINT
+     * REST END POINT
      * https://demo.openmf.org/fineract-provider/api/v1/centers/{centerId}?command=activate
      *
      * @param centerId
