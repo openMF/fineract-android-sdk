@@ -1,6 +1,5 @@
 package org.mifos.ui
 
-import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -22,7 +21,6 @@ class HomeViewModel : ViewModel() {
 
     private var mifosSdk: MifosSdk = MifosSdk.Builder().setContext(context).build()
 
-    @SuppressLint("CheckResult")
     fun login(
         username: String,
         password: String,
@@ -37,6 +35,7 @@ class HomeViewModel : ViewModel() {
                 { user -> onSuccess(user) },
                 { error -> onError(error) },
                 { onComplete() })
+            ?.dispose()
 
         /**
          * Get response in the form of LiveData
