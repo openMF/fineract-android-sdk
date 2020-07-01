@@ -1,6 +1,7 @@
 package org.mifos.core
 
 import android.content.Context
+import org.mifos.core.preferencesmanager.MifosPreferenceManager
 import org.mifos.core.viewmodels.AuthViewModel
 
 /**
@@ -11,23 +12,29 @@ import org.mifos.core.viewmodels.AuthViewModel
  * for a service which he/she needs. The sdk talks to the DataManager to fetch the appropriate service
  * and return the object.
  */
-class MifosSdk private constructor(
-    private val context: Context?
-) {
+class MifosSdk private constructor(context: Context) {
 
-    private var authViewModel: AuthViewModel = AuthViewModel()
+    private val mifosPreferenceManager = MifosPreferenceManager(context)
+
+    private val authViewModel: AuthViewModel = AuthViewModel()
 
     fun getAuthApi(): AuthViewModel {
         return authViewModel
     }
 
     /**
+     * Returns the currently signed in user if any.
+     * Else returns null value
+
+    fun getCurrentUser(): User? {
+    if ()
+    }*/
+
+    /**
      * Builder class to build a MifosSdk object which can be used to access the APIs.
      * */
-    data class Builder(
-        private var context: Context? = null
-    ) {
-        fun setContext(context: Context?) = apply { this.context = context }
+    data class Builder(private var context: Context) {
+        fun setContext(context: Context) = apply { this.context = context }
         fun build() = MifosSdk(context)
     }
 }

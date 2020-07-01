@@ -21,9 +21,9 @@ class HomeViewModel : ViewModel() {
 
     var homeListener: HomeListener? = null
 
-    var context: Context? = null
+    lateinit var context: Context
 
-    private var mifosSdk: MifosSdk = MifosSdk.Builder().setContext(context).build()
+    private var mifosSdk: MifosSdk = MifosSdk.Builder(context).build()
 
     fun testApi(
         apiEndpoint: String,
