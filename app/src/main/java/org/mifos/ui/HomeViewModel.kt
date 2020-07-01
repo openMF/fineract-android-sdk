@@ -1,10 +1,13 @@
 package org.mifos.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.mifos.core.MifosSdk
+import org.mifos.core.apimanager.ApiEndPoints
 import org.mifos.core.models.user.User
 
 /**
@@ -12,8 +15,9 @@ import org.mifos.core.models.user.User
  *
  * ViewModel class for HomeActivity. An example to illustrate how the SDK should be used.
  */
-@Suppress("UNCHECKED_CAST")
 class HomeViewModel : ViewModel() {
+
+    private val TAG = HomeViewModel::class.java.name
 
     var homeListener: HomeListener? = null
 
@@ -21,7 +25,27 @@ class HomeViewModel : ViewModel() {
 
     private var mifosSdk: MifosSdk = MifosSdk.Builder().setContext(context).build()
 
-    fun login(
+    fun testApi(
+        apiEndpoint: String,
+        onSuccess: (Any) -> Unit,
+        onError: (error: Throwable) -> Unit,
+        onComplete: () -> Unit
+    ) {
+        when (apiEndpoint) {
+            ApiEndPoints.AUTHENTICATION -> {
+                login(
+                    "mifos",
+                    "password",
+                    onSuccess,
+                    onError,
+                    onComplete
+                )
+            }
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    private fun login(
         username: String,
         password: String,
         onSuccess: (User) -> Unit,
@@ -32,11 +56,18 @@ class HomeViewModel : ViewModel() {
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
             ?.subscribe(
-                { user -> onSuccess(user) },
-                { error -> onError(error) },
-                { onComplete() })
-            ?.dispose()
-
+                { user ->
+                    Log.d(TAG, "login successful: $user")
+                    onSuccess(user)
+                },
+                { error ->
+                    Log.d(TAG, "error: ${error.message}")
+                    onError(error)
+                },
+                {
+                    Log.d(TAG, "login: complete")
+                    onComplete()
+                })
         /**
          * Get response in the form of LiveData
          *

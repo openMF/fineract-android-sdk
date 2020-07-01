@@ -47,10 +47,11 @@ class ApiItemRecyclerAdapter(
             holder.pbApiResponse.visibility = VISIBLE
             holder.tvApiResponse.text = context.getString(R.string.api_response)
 
-            homeViewModel.login("mifos", "password",
-                { user ->
+            // Handle API Response
+            homeViewModel.testApi(apiItem.apiEndPoint!!,
+                { response ->
                     holder.pbApiResponse.visibility = GONE
-                    holder.tvApiResponse.text = "$user"
+                    holder.tvApiResponse.text = "$response"
                     homeViewModel.homeListener?.onSuccess("Success")
                 },
                 { error ->
