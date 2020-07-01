@@ -3,6 +3,7 @@ package org.mifos.models
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Button
@@ -41,16 +42,24 @@ class ApiItemRecyclerAdapter(
         val apiItem: ApiItemModel = apiItemsList[position]
         holder.tvApiName.text = apiItem.apiName
         holder.tvApiDescription.text = apiItem.apiDescription
-        //holder.tv_api_response.text = apiItem.apiResponse
         holder.btnTestApi.setOnClickListener {
             holder.llApiResponse.visibility = VISIBLE
             holder.pbApiResponse.visibility = VISIBLE
             holder.tvApiResponse.text = context.getString(R.string.api_response)
-            homeViewModel.testApi(
-                apiItem.apiEndPoint,
-                holder.tvApiResponse,
-                holder.pbApiResponse
-            )
+
+            homeViewModel.login("mifos", "password",
+                { user ->
+                    holder.pbApiResponse.visibility = GONE
+                    holder.tvApiResponse.text = "$user"
+                    homeViewModel.homeListener?.onSuccess("Success")
+                },
+                { error ->
+                    holder.tvApiResponse.text = error.toString()
+                    holder.pbApiResponse.visibility = GONE
+                    homeViewModel.homeListener?.onFailure(error.toString())
+                }, {
+                    holder.pbApiResponse.visibility = GONE
+                })
         }
     }
 
