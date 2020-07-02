@@ -34,7 +34,6 @@ class MifosSdk private constructor(context: Context) {
      * Builder class to build a MifosSdk object which can be used to access the APIs.
      * */
     data class Builder(private var context: Context) {
-        fun setContext(context: Context) = apply { this.context = context }
         fun build() = MifosSdk(context)
     }
 }

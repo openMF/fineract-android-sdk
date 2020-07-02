@@ -43,7 +43,7 @@ object MifosOkHttpClient {
                     val newRequest = chain.request().newBuilder()
                         .addHeader(
                             "Authorization",
-                            "Bearer ${MifosPreferenceManager.getAuthToken()}"
+                            "Bearer $MifosPreferenceManager"
                         )
                         .build()
                     chain.proceed(newRequest)
