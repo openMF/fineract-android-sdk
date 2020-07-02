@@ -9,14 +9,10 @@ import org.mifos.core.models.user.User
  *
  * A Singleton Repository class to provide data retrieval from AuthService
  */
-class AuthRepository private constructor() {
-    companion object {
-        val instance = AuthRepository()
-    }
+class AuthRepository {
 
     // This will later be replaced by Dependency Injection
-    private var baseApiManager: BaseApiManager =
-        BaseApiManager()
+    private var baseApiManager: BaseApiManager = BaseApiManager()
 
     fun login(username: String, password: String): Flowable<User>? {
         return baseApiManager.getAuthApi()?.authenticate(username, password)

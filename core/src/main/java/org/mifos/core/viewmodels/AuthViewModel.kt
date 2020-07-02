@@ -11,7 +11,7 @@ import org.mifos.core.repositories.AuthRepository
  */
 class AuthViewModel {
 
-    private val authRepository = AuthRepository.instance
+    private val authRepository = AuthRepository()
 
     fun login(username: String, password: String): Flowable<User>? {
         return authRepository.login(username, password)

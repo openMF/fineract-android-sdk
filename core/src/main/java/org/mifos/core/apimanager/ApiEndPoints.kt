@@ -6,8 +6,8 @@ package org.mifos.core.apimanager
  * This class contains all the Constants for API End Points
  */
 class ApiEndPoints {
-
     companion object {
+        const val DEFAULT_INSTANCE_URL = "https://demo.mifos.io/fineract-provider/api/v1/"
         const val AUTHENTICATION = "authentication"
         const val CHARGES = "charges"
         const val CENTERS = "centers"

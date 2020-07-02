@@ -11,117 +11,11 @@ class ApiItemsContent {
 
     companion object {
 
+        const val INSTANCE_URL = "https://demo.mifos.io/fineract-provider/api/v1/"
+
         fun getApiItemsContent(): MutableList<ApiItemModel> {
             val apiList: MutableList<ApiItemModel> = arrayListOf()
 
-            apiList.add(
-                ApiItemModel(
-                    "Authentication API",
-                    "Authenticate user who is not connected to any service",
-                    "Authenticated successfully or not",
-                    ApiEndPoints.AUTHENTICATION,
-                    null
-                )
-            )
-            apiList.add(
-                ApiItemModel(
-                    "Client API",
-                    "Retrieve a client",
-                    "Client exists or not",
-                    ApiEndPoints.CLIENTS,
-                    null
-                )
-            )
-            apiList.add(
-                ApiItemModel(
-                    "Loan Accounts API",
-                    "Retrieve loan account of a user",
-                    "Loan account exists or not",
-                    ApiEndPoints.DATATABLES,
-                    null
-                )
-            )
-            apiList.add(
-                ApiItemModel(
-                    "Savings Account API",
-                    "Retrieve savings account of a user",
-                    "Savings account exists or not",
-                    ApiEndPoints.SAVINGSACCOUNTS,
-                    null
-                )
-            )
-            apiList.add(
-                ApiItemModel(
-                    "Authentication API",
-                    "Authenticate user who is not connected to any service",
-                    "Authenticated successfully or not",
-                    ApiEndPoints.AUTHENTICATION,
-                    null
-                )
-            )
-            apiList.add(
-                ApiItemModel(
-                    "Client API",
-                    "Retrieve a client",
-                    "Client exists or not",
-                    ApiEndPoints.CLIENTS,
-                    null
-                )
-            )
-            apiList.add(
-                ApiItemModel(
-                    "Loan Accounts API",
-                    "Retrieve loan account of a user",
-                    "Loan account exists or not",
-                    ApiEndPoints.DATATABLES,
-                    null
-                )
-            )
-            apiList.add(
-                ApiItemModel(
-                    "Savings Account API",
-                    "Retrieve savings account of a user",
-                    "Savings account exists or not",
-                    ApiEndPoints.SAVINGSACCOUNTS,
-                    null
-                )
-            )
-            apiList.add(
-                ApiItemModel(
-                    "Authentication API",
-                    "Authenticate user who is not connected to any service",
-                    "Authenticated successfully or not",
-                    ApiEndPoints.AUTHENTICATION,
-                    null
-                )
-            )
-            apiList.add(
-                ApiItemModel(
-                    "Client API",
-                    "Retrieve a client",
-                    "Client exists or not",
-                    ApiEndPoints.CLIENTS,
-                    null
-                )
-            )
-            apiList.add(
-                ApiItemModel(
-                    "Loan Accounts API",
-                    "Retrieve loan account of a user",
-                    "Loan account exists or not",
-                    ApiEndPoints.DATATABLES,
-                    null
-                )
-            )
-            apiList.add(
-                ApiItemModel(
-                    "Savings Account API",
-                    "Retrieve savings account of a user",
-                    "Savings account exists or not",
-                    ApiEndPoints.SAVINGSACCOUNTS,
-                    null
-                )
-            )
             apiList.add(
                 ApiItemModel(
                     "Authentication API",

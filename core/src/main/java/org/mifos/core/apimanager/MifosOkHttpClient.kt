@@ -41,12 +41,13 @@ object MifosOkHttpClient {
                 .hostnameVerifier { _, _ -> true }
                 .addInterceptor { chain ->
                     val newRequest = chain.request().newBuilder()
-                        .addHeader(
+                    if (MifosPreferenceManager.isAuthenticated()) {
+                        newRequest.addHeader(
                             "Authorization",
-                            "Bearer $MifosPreferenceManager"
+                            "Bearer ${MifosPreferenceManager.getToken()}"
                         )
-                        .build()
-                    chain.proceed(newRequest)
+                    }
+                    chain.proceed(newRequest.build())
                 }
                 .build()
         } catch (e: Exception) {

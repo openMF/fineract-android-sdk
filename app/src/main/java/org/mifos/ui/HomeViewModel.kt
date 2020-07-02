@@ -2,7 +2,6 @@ package org.mifos.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -17,13 +16,11 @@ import org.mifos.core.models.user.User
  */
 class HomeViewModel : ViewModel() {
 
-    private val TAG = HomeViewModel::class.java.name
-
     var homeListener: HomeListener? = null
 
     lateinit var context: Context
 
-    private var mifosSdk: MifosSdk = MifosSdk.Builder(context).build()
+    private var mifosSdk = MifosSdk.getInstance()
 
     fun testApi(
         apiEndpoint: String,
@@ -46,8 +43,7 @@ class HomeViewModel : ViewModel() {
 
     @SuppressLint("CheckResult")
     private fun login(
-        username: String,
-        password: String,
+        username: String, password: String,
         onSuccess: (User) -> Unit,
         onError: (error: Throwable) -> Unit,
         onComplete: () -> Unit
@@ -56,18 +52,10 @@ class HomeViewModel : ViewModel() {
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
             ?.subscribe(
-                { user ->
-                    Log.d(TAG, "login successful: $user")
-                    onSuccess(user)
-                },
-                { error ->
-                    Log.d(TAG, "error: ${error.message}")
-                    onError(error)
-                },
-                {
-                    Log.d(TAG, "login: complete")
-                    onComplete()
-                })
+                { user -> onSuccess(user) },
+                { error -> onError(error) },
+                { onComplete() }
+            )
         /**
          * Get response in the form of LiveData
          *
