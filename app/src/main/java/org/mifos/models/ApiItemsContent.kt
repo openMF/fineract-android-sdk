@@ -27,10 +27,10 @@ class ApiItemsContent {
             )
             apiList.add(
                 ApiItemModel(
-                    "Client API",
-                    "Retrieve a client",
-                    "Client exists or not",
-                    ApiEndPoints.CLIENTS,
+                    "Center API",
+                    "Get all centers. Supports pagination",
+                    "List of centers",
+                    ApiEndPoints.CENTERS,
                     null
                 )
             )

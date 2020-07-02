@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import org.mifos.core.apimanager.ApiEndPoints
 import org.mifos.core.viewmodels.AuthViewModel
+import org.mifos.core.viewmodels.CenterViewModel
 
 /**
  * Created by grandolf49 on 06-06-2020
@@ -24,7 +25,7 @@ class MifosSdk private constructor() {
             this.context = context
             MifosPreferenceManager.init(context)
             MifosPreferenceManager.setInstanceUrl(ApiEndPoints.DEFAULT_INSTANCE_URL)
-            Log.d("MifosSdk", "initialize: ")
+            Log.d("MifosSdk", "initialized successfully")
         }
 
         fun getInstance(): MifosSdk {
@@ -40,5 +41,9 @@ class MifosSdk private constructor() {
      */
     fun getAuthApi(): AuthViewModel {
         return AuthViewModel()
+    }
+
+    fun getCenterApi(): CenterViewModel {
+        return CenterViewModel()
     }
 }

@@ -1,6 +1,6 @@
 package org.mifos.core.services
 
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import org.mifos.core.apimanager.ApiEndPoints.Companion.CENTERS
 import org.mifos.core.models.GenericResponse
 import org.mifos.core.models.Payload
@@ -26,44 +26,44 @@ interface CenterService {
         @Query("paged") b: Boolean,
         @Query("offset") offset: Int,
         @Query("limit") limit: Int
-    ): Observable<Page<Center?>?>?
+    ): Flowable<Page<Center?>?>?
 
     @GET("$CENTERS/{centerId}/accounts")
-    fun getCenterAccounts(@Path("centerId") centerId: Int): Observable<CenterAccounts?>?
+    fun getCenterAccounts(@Path("centerId") centerId: Int): Flowable<CenterAccounts?>?
 
     @GET("$CENTERS/{centerId}?associations=groupMembers,collectionMeetingCalendar")
     fun getCenterWithGroupMembersAndCollectionMeetingCalendar(@Path("centerId") centerId: Int):
-            Observable<CenterWithAssociations?>?
+            Flowable<CenterWithAssociations?>?
 
     @GET(CENTERS)
     fun getAllCentersInOffice(
         @Query("officeId") officeId: Int,
         @QueryMap additionalParams: Map<String?, Any?>?
-    ): Observable<List<Center?>?>?
+    ): Flowable<List<Center?>?>?
 
     @GET("$CENTERS/{centerId}?associations=groupMembers")
-    fun getAllGroupsForCenter(@Path("centerId") centerId: Int): Observable<CenterWithAssociations?>?
+    fun getAllGroupsForCenter(@Path("centerId") centerId: Int): Flowable<CenterWithAssociations?>?
 
     @POST("$CENTERS/{centerId}?command=generateCollectionSheet")
     fun getCollectionSheet(
         @Path("centerId") centerId: Long,
         @Body payload: Payload?
-    ): Observable<CollectionSheet?>?
+    ): Flowable<CollectionSheet?>?
 
     @POST("$CENTERS/{centerId}?command=saveCollectionSheet")
     fun saveCollectionSheet(
         @Path("centerId") centerId: Int,
         @Body collectionSheetPayload: CollectionSheetPayload?
-    ): Observable<SaveResponse?>?
+    ): Flowable<SaveResponse?>?
 
     @POST("$CENTERS/{centerId}?command=saveCollectionSheet")
     fun saveCollectionSheetAsync(
         @Path("centerId") centerId: Int,
         @Body collectionSheetPayload: CollectionSheetPayload?
-    ): Observable<SaveResponse?>?
+    ): Flowable<SaveResponse?>?
 
     @POST(CENTERS)
-    fun createCenter(@Body centerPayload: CenterPayload?): Observable<SaveResponse?>?
+    fun createCenter(@Body centerPayload: CenterPayload?): Flowable<SaveResponse?>?
 
     @GET(CENTERS)
     fun getCenterList(
@@ -72,7 +72,7 @@ interface CenterService {
         @Query("meetingDate") meetingDate: String?,
         @Query("officeId") officeId: Int,
         @Query("staffId") staffId: Int
-    ): Observable<List<OfflineCenter?>?>?
+    ): Flowable<List<OfflineCenter?>?>?
 
 
     /**
@@ -87,5 +87,5 @@ interface CenterService {
     fun activateCenter(
         @Path("centerId") centerId: Int,
         @Body activatePayload: ActivatePayload?
-    ): Observable<GenericResponse?>?
+    ): Flowable<GenericResponse?>?
 }

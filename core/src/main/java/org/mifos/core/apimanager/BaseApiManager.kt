@@ -5,6 +5,7 @@ import org.mifos.core.apimanager.BaseUrl.Companion.API_PATH
 import org.mifos.core.apimanager.BaseUrl.Companion.PROTOCOL_HTTPS
 import org.mifos.core.apimanager.MifosOkHttpClient.mifosOkHttpClient
 import org.mifos.core.services.AuthService
+import org.mifos.core.services.CenterService
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -19,6 +20,7 @@ class BaseApiManager {
 
     private var mRetrofit: Retrofit? = null
     private var authApi: AuthService? = null
+    private var centerApi: CenterService? = null
 
     init {
         mRetrofit = Retrofit.Builder()
@@ -33,10 +35,15 @@ class BaseApiManager {
 
     private fun init() {
         authApi = mRetrofit?.create(AuthService::class.java)
+        centerApi = mRetrofit?.create(CenterService::class.java)
     }
 
     fun getAuthApi(): AuthService? {
         return authApi
+    }
+
+    fun getCenterApi(): CenterService? {
+        return centerApi
     }
 
     private fun getInstanceUrl(): String {

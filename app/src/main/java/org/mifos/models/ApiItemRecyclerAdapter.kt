@@ -57,7 +57,7 @@ class ApiItemRecyclerAdapter(
                 },
                 { error ->
                     holder.pbApiResponse.hide()
-                    holder.tvApiResponse.text = error.toString()
+                    holder.tvApiResponse.text = "$error"
                     homeViewModel.homeListener?.onFailure(error.toString())
                 }, {
                     holder.pbApiResponse.hide()
