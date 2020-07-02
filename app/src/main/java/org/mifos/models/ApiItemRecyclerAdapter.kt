@@ -3,8 +3,6 @@ package org.mifos.models
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
@@ -14,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.layout_api_item.view.*
 import org.mifos.R
 import org.mifos.ui.HomeViewModel
+import org.mifos.utils.hide
+import org.mifos.utils.show
 
 /**
  * Created by grandolf49 on 17-06-2020
@@ -43,23 +43,24 @@ class ApiItemRecyclerAdapter(
         holder.tvApiName.text = apiItem.apiName
         holder.tvApiDescription.text = apiItem.apiDescription
         holder.btnTestApi.setOnClickListener {
-            holder.llApiResponse.visibility = VISIBLE
-            holder.pbApiResponse.visibility = VISIBLE
+            holder.llApiResponse.show()
+            holder.pbApiResponse.show()
             holder.tvApiResponse.text = context.getString(R.string.api_response)
 
             // Handle API Response
-            homeViewModel.testApi(apiItem.apiEndPoint!!,
+            homeViewModel.testApi(
+                apiItem.apiEndPoint!!,
                 { response ->
-                    holder.pbApiResponse.visibility = GONE
+                    holder.pbApiResponse.hide()
                     holder.tvApiResponse.text = "$response"
                     homeViewModel.homeListener?.onSuccess("Success")
                 },
                 { error ->
+                    holder.pbApiResponse.hide()
                     holder.tvApiResponse.text = error.toString()
-                    holder.pbApiResponse.visibility = GONE
                     homeViewModel.homeListener?.onFailure(error.toString())
                 }, {
-                    holder.pbApiResponse.visibility = GONE
+                    holder.pbApiResponse.hide()
                 })
         }
     }

@@ -3,7 +3,6 @@ package org.mifos.core
 import android.content.Context
 import android.util.Log
 import org.mifos.core.apimanager.ApiEndPoints
-import org.mifos.core.preferencesmanager.MifosPreferenceManager
 import org.mifos.core.viewmodels.AuthViewModel
 
 /**

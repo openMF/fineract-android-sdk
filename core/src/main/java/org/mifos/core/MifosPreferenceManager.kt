@@ -1,4 +1,4 @@
-package org.mifos.core.preferencesmanager
+package org.mifos.core
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -33,7 +33,7 @@ class MifosPreferenceManager {
         private var gson = Gson()
 
         fun init(context: Context) {
-            this.context = context
+            Companion.context = context
         }
 
         /**
@@ -47,33 +47,39 @@ class MifosPreferenceManager {
          * Get and Put Strings in Shared Preferences
          */
         private fun getString(key: String, defaultValue: String): String? {
-            return getSharedPreferences()?.getString(key, defaultValue)
+            return getSharedPreferences()
+                ?.getString(key, defaultValue)
         }
 
         private fun putString(key: String, value: String) {
-            getSharedPreferences()?.edit()?.putString(key, value)?.apply()
+            getSharedPreferences()
+                ?.edit()?.putString(key, value)?.apply()
         }
 
         /**
          * Get and Put Integers in Shared Preferences
          */
         private fun getInt(key: String, defaultValue: Int): Int? {
-            return getSharedPreferences()?.getInt(key, defaultValue)
+            return getSharedPreferences()
+                ?.getInt(key, defaultValue)
         }
 
         private fun putInt(key: String, value: Int) {
-            getSharedPreferences()?.edit()?.putInt(key, value)?.apply()
+            getSharedPreferences()
+                ?.edit()?.putInt(key, value)?.apply()
         }
 
         /**
          * Get and Put Booleans in Shared Preferences
          */
         private fun getBoolean(key: String, defaultValue: Boolean): Boolean? {
-            return getSharedPreferences()?.getBoolean(key, defaultValue)
+            return getSharedPreferences()
+                ?.getBoolean(key, defaultValue)
         }
 
         private fun putBoolean(key: String, value: Boolean) {
-            getSharedPreferences()?.edit()?.putBoolean(key, value)?.apply()
+            getSharedPreferences()
+                ?.edit()?.putBoolean(key, value)?.apply()
         }
 
         /**
@@ -84,12 +90,18 @@ class MifosPreferenceManager {
          * 1. Save and Retrieve currently signed in user
          */
         fun saveUser(user: User) {
-            putString(KEY_USER_DETAILS, gson.toJson(user))
+            putString(
+                KEY_USER_DETAILS,
+                gson.toJson(user)
+            )
         }
 
         fun getUser(): User? {
             return gson.fromJson(
-                getString(KEY_USER_DETAILS, DEFAULT_STRING_VALUE),
+                getString(
+                    KEY_USER_DETAILS,
+                    DEFAULT_STRING_VALUE
+                ),
                 User::class.java
             )
         }
@@ -98,49 +110,75 @@ class MifosPreferenceManager {
          * 2. Save and retrieve Auth Token
          */
         fun saveToken(token: String) {
-            putString(KEY_AUTH_TOKEN, token)
+            putString(
+                KEY_AUTH_TOKEN,
+                token
+            )
         }
 
         fun getToken(): String? {
-            return getString(KEY_AUTH_TOKEN, DEFAULT_STRING_VALUE)
+            return getString(
+                KEY_AUTH_TOKEN,
+                DEFAULT_STRING_VALUE
+            )
         }
 
         fun isAuthenticated(): Boolean {
-            return !getToken().equals(DEFAULT_STRING_VALUE)
+            return !getToken()
+                .equals(DEFAULT_STRING_VALUE)
         }
 
         /**
          * 3. Connection
          */
         fun setInstanceUrl(instanceUrl: String) {
-            putString(KEY_INSTANCE_URL, instanceUrl)
+            putString(
+                KEY_INSTANCE_URL,
+                instanceUrl
+            )
         }
 
         fun getInstanceUrl(): String? {
-            return getString(KEY_INSTANCE_URL, DEFAULT_STRING_VALUE)
+            return getString(
+                KEY_INSTANCE_URL,
+                DEFAULT_STRING_VALUE
+            )
         }
 
         fun setInstanceDomain(instanceDomain: String) {
-            putString(KEY_INSTANCE_DOMAIN, instanceDomain)
+            putString(
+                KEY_INSTANCE_DOMAIN,
+                instanceDomain
+            )
         }
 
         fun getInstanceDomain(): String? {
-            return getString(KEY_INSTANCE_DOMAIN, DEFAULT_STRING_VALUE)
+            return getString(
+                KEY_INSTANCE_DOMAIN,
+                DEFAULT_STRING_VALUE
+            )
         }
 
         fun setPort(port: String) {
-            putString(KEY_PORT, port)
+            putString(
+                KEY_PORT,
+                port
+            )
         }
 
         fun getPort(): String? {
-            return getString(KEY_PORT, DEFAULT_STRING_VALUE)
+            return getString(
+                KEY_PORT,
+                DEFAULT_STRING_VALUE
+            )
         }
 
         /**
          * Clear all shared preferences
          */
         fun clearPreferences() {
-            getSharedPreferences()?.edit()?.clear()?.apply()
+            getSharedPreferences()
+                ?.edit()?.clear()?.apply()
         }
 
     }

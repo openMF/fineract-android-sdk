@@ -2,7 +2,7 @@ package org.mifos.core.apimanager
 
 import android.annotation.SuppressLint
 import okhttp3.OkHttpClient
-import org.mifos.core.preferencesmanager.MifosPreferenceManager
+import org.mifos.core.MifosPreferenceManager
 import java.security.SecureRandom
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
