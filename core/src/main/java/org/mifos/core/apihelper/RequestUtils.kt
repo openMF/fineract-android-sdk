@@ -50,8 +50,13 @@ private fun <IN> callRequest(
  * @param call the call instance of type [Call], which is to be executed
  * @return [LiveData] object of generic type [IN] of [DataState]
  */
-fun <IN> apiRequest(call: Call<IN>): LiveData<DataState<IN>> {
+fun <IN> apiRequest(call: Call<IN>?): LiveData<DataState<IN>> {
     val liveData = MutableLiveData<DataState<IN>>()
+    if (call == null) {
+        return liveData.apply {
+            this.value = DataState.Error(Exception("Invalid request!!"))
+        }
+    }
     callRequest(call, { response ->
         if (response.body() != null) {
             liveData.postValue(DataState.Success(response.body()!!))
@@ -76,10 +81,15 @@ fun <IN> apiRequest(call: Call<IN>): LiveData<DataState<IN>> {
  * @return [LiveData] object of generic type [OUT] of [DataState]
  */
 fun <IN, OUT> apiRequest(
-    call: Call<IN>,
+    call: Call<IN>?,
     entityMapper: EntityMapper<IN, OUT>
 ): LiveData<DataState<OUT>> {
     val liveData = MutableLiveData<DataState<OUT>>()
+    if (call == null) {
+        return liveData.apply {
+            this.value = DataState.Error(Exception("Invalid request!!"))
+        }
+    }
     callRequest(call, { response ->
         if (response.body() != null) {
             val body = entityMapper.mapFromEntity(response.body()!!)
