@@ -2,10 +2,13 @@ package org.mifos.core.apimanager
 
 import android.annotation.SuppressLint
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import java.security.SecureRandom
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
+import java.util.concurrent.TimeUnit
 import javax.net.ssl.*
+
 
 /**
  * Created by grandolf49 on 18-06-2020
@@ -33,14 +36,28 @@ object MifosOkHttpClient {
             })
             val sslContext = SSLContext.getInstance("SSL")
             sslContext.init(null, trustAllCerts, SecureRandom())
-            OkHttpClient.Builder()
-                .sslSocketFactory(sslContext.socketFactory, trustAllCerts[0] as X509TrustManager)
-                .hostnameVerifier(HostnameVerifier { _, _ -> true })
-                .addInterceptor { chain ->
-                    val newRequest = chain.request().newBuilder()
-                    chain.proceed(newRequest.build())
-                }
-                .build()
+            val builder = OkHttpClient.Builder()
+
+            builder.sslSocketFactory(sslContext.socketFactory, trustAllCerts[0] as X509TrustManager)
+            builder.hostnameVerifier(HostnameVerifier { _, _ -> true })
+
+            //Enable Full Body Logging
+
+            //Enable Full Body Logging
+            val logger = HttpLoggingInterceptor()
+            logger.setLevel(HttpLoggingInterceptor.Level.BODY)
+
+            //Setting Timeout 30 Seconds
+
+            //Setting Timeout 30 Seconds
+            builder.connectTimeout(60, TimeUnit.SECONDS)
+            builder.readTimeout(60, TimeUnit.SECONDS)
+
+            //Interceptor :> Full Body Logger and ApiRequest Header
+
+            //Interceptor :> Full Body Logger and ApiRequest Header
+            builder.addInterceptor(logger)
+            builder.build()
         } catch (e: Exception) {
             throw RuntimeException(e)
         }

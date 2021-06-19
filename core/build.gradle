@@ -8,7 +8,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        minSdkVersion 22
+        minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -23,21 +23,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.3.0'
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -45,7 +35,14 @@ dependencies {
 
     //testing dependency
     androidTestImplementation "com.google.truth:truth:1.1.3"
-    implementation 'com.github.openMF:fineract-client:1.5.0-alpha'
+
+    implementation 'com.github.openMF:fineract-client:2.1.0-alpha'
+
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"){
+        version {
+            strictly "$kotlin_version"
+        }
+    }
 
 
     // Retrofit and OkHttp
@@ -55,16 +52,11 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
+    implementation 'io.reactivex:rxjava:1.1.4'
+
     def okhttp_version = '3.14.9'
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
-
-    // RxJava
-    implementation "io.reactivex.rxjava2:rxjava:2.2.19"
-    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
-
-    // Reactive Streams
-    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:2.2.0"
 
     //Shared Preferences
     implementation 'androidx.preference:preference:1.1.1'
