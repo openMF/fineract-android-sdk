@@ -1,52 +1,54 @@
 package org.mifos.core.apimanager
 
-import org.mifos.core.apimanager.BaseUrl.Companion.API_ENDPOINT
-import org.mifos.core.apimanager.BaseUrl.Companion.API_PATH
-import org.mifos.core.apimanager.BaseUrl.Companion.PROTOCOL_HTTPS
-import org.mifos.core.apimanager.MifosOkHttpClient.mifosOkHttpClient
-import org.mifos.core.services.AuthService
-import org.mifos.core.services.CenterService
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
+import org.apache.fineract.client.services.*
+import org.apache.fineract.client.util.FineractClient
+import org.mifos.core.sharedpreference.UserPreferences
 
-/**
- * Created by grandolf49 on 06-06-2020
- *
- * A class to provide the Retrofit service to the SDK
- */
-class BaseApiManager {
+interface BaseApiManager {
 
-    private var mRetrofit: Retrofit? = null
-    private var authApi: AuthService? = null
-    private var centerApi: CenterService? = null
-
-    init {
-        mRetrofit = Retrofit.Builder()
-            .baseUrl(getInstanceUrl())
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .client(mifosOkHttpClient)
-            .build()
-        init()
+    companion object {
+        fun getInstance(userPreferences: UserPreferences): BaseApiManager {
+            return BaseApiManagerImpl(userPreferences)
+        }
     }
 
-    private fun init() {
-        authApi = mRetrofit?.create(AuthService::class.java)
-        centerApi = mRetrofit?.create(CenterService::class.java)
-    }
+    fun createService(username: String, password: String)
 
-    fun getAuthApi(): AuthService? {
-        return authApi
-    }
+    fun getClient(): FineractClient
 
-    fun getCenterApi(): CenterService? {
-        return centerApi
-    }
+    fun getAuthApi(): AuthenticationHttpBasicApi?
 
-    private fun getInstanceUrl(): String {
-        return PROTOCOL_HTTPS + API_ENDPOINT + API_PATH
-    }
+    fun getCenterApi(): CentersApi?
+
+    fun getClientsApi(): ClientApi?
+
+    fun getDataTableApi(): DataTablesApi?
+
+    fun getLoanApi(): LoansApi?
+
+    fun getSavingsApi(): SavingsAccountApi?
+
+    fun getSearchApi(): SearchApiApi?
+
+    fun getGroupApi(): GroupsApi?
+
+    fun getDocumentApi(): DocumentsApiFixed?
+
+    fun getOfficeApi(): OfficesApi?
+
+    fun getStaffApi(): StaffApi?
+
+    fun getSurveyApi(): SpmSurveysApi?
+
+    fun getChargeApi(): ChargesApi?
+
+    fun getRunReportsService(): RunReportsApi?
+
+    fun getNoteApi(): NotesApi?
+
+    fun getCollectionSheetApi(): CentersApi?
+
+    fun getCheckerInboxApi(): AuditsApi?
+
+    fun getRescheduleLoansApi(): LoanReschedulingApi?
 }

@@ -2,13 +2,10 @@ package org.mifos.core.apimanager
 
 import android.annotation.SuppressLint
 import okhttp3.OkHttpClient
-import org.mifos.core.MifosPreferenceManager
 import java.security.SecureRandom
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
-import javax.net.ssl.SSLContext
-import javax.net.ssl.TrustManager
-import javax.net.ssl.X509TrustManager
+import javax.net.ssl.*
 
 /**
  * Created by grandolf49 on 18-06-2020
@@ -38,15 +35,9 @@ object MifosOkHttpClient {
             sslContext.init(null, trustAllCerts, SecureRandom())
             OkHttpClient.Builder()
                 .sslSocketFactory(sslContext.socketFactory, trustAllCerts[0] as X509TrustManager)
-                .hostnameVerifier { _, _ -> true }
+                .hostnameVerifier(HostnameVerifier { _, _ -> true })
                 .addInterceptor { chain ->
                     val newRequest = chain.request().newBuilder()
-                    if (MifosPreferenceManager.isAuthenticated()) {
-                        newRequest.addHeader(
-                            "Authorization",
-                            "Bearer ${MifosPreferenceManager.getToken()}"
-                        )
-                    }
                     chain.proceed(newRequest.build())
                 }
                 .build()
