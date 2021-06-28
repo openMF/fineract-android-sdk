@@ -1,20 +1,15 @@
 package org.mifos.core.sharedpreference
 
-import android.content.Context
 import android.content.SharedPreferences
-import androidx.preference.PreferenceManager
 import com.google.gson.Gson
 
 /**
  * The base class for managing all the shared preference related task
  * @author Danish Jamal - http://github.com/danishjamal104/
- * @property context the context to which this preference belong/bind to
  */
-abstract class BasePreferenceManager(val context: Context) {
+abstract class BasePreferenceManager {
 
-    private val _preference: SharedPreferences =
-        PreferenceManager.getDefaultSharedPreferences(context)
-    val preference get() = _preference
+    abstract val preference: SharedPreferences
     private val editor: SharedPreferences.Editor get() = preference.edit()
     val gson = Gson()
 
@@ -44,7 +39,7 @@ abstract class BasePreferenceManager(val context: Context) {
      * @param key The key of the data to be fetched, of type [Key]
      * @return the value fetched from preference of type [T]
      */
-    inline fun <reified T> get(key: Key, default: T? = null): T? {
+    inline fun <reified T> get(key: Key, default: T? = null): T {
         return when (T::class) {
             String::class -> {
                 preference.getString(key.value, default?.let { it as String } ?: "") as T
@@ -67,8 +62,8 @@ abstract class BasePreferenceManager(val context: Context) {
                     default?.let { it as MutableSet<String> } ?: mutableSetOf()) as T
             }
             else -> {
-                preference.getString(key.value, default?.let { it as String } ?: "null")
-                    ?.jsonToObject<T>()
+                preference.getString(key.value, default?.let { it as String } ?: "{}")
+                    ?.jsonToObject() ?: gson.fromJson<T>("{}", T::class.java)
             }
         }
     }
@@ -97,14 +92,15 @@ abstract class BasePreferenceManager(val context: Context) {
  * @see BasePreferenceManager.put
  * @see <a href="https://github.com/openMF/android-client/blob/master/mifosng-android/src/main/java/com/mifos/utils/PrefManager.java">openMF/android-client-PrefManager.java</a>
  */
-enum class Key(val value: String) {
-    USER_ID("preferences_user_id"), TOKEN("preferences_token"),
-    TENANT("preferences_tenant"),
-    INSTANCE_URL("preferences_instance"),
-    INSTANCE_DOMAIN("preferences_domain"),
-    PORT("preferences_port"),
-    USER_STATUS("user_status"),
-    USER_DETAILS("user_details"),
-    PASSCODE("passcode"),
-    PASSCODE_STATUS("passcode_status")
+sealed class Key(val value: String) {
+    object USER_ID: Key("preferences_user_id")
+    object TOKEN: Key("preferences_token")
+    object TENANT: Key("preferences_tenant")
+    object INSTANCE_URL: Key("preferences_instance")
+    object INSTANCE_DOMAIN: Key("preferences_domain")
+    object PORT: Key("preferences_port")
+    object USER_STATUS: Key("user_status")
+    object PASSCODE: Key("passcode")
+    object PASSCODE_STATUS: Key("passcode_status")
+    data class Custom(val customKeyValue: String): Key(customKeyValue)
 }
