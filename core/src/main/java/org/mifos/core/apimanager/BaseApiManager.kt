@@ -7,48 +7,48 @@ import org.mifos.core.sharedpreference.UserPreferences
 interface BaseApiManager {
 
     companion object {
-        fun getInstance(userPreferences: UserPreferences): BaseApiManager {
-            return BaseApiManagerImpl(userPreferences)
+        fun getInstance(): BaseApiManager {
+            return BaseApiManagerImpl()
         }
     }
 
-    fun createService(username: String, password: String)
+    fun createService(username: String, password: String, baseUrl: String, tenant: String)
 
     fun getClient(): FineractClient
 
-    fun getAuthApi(): AuthenticationHttpBasicApi?
+    fun getAuthApi(): AuthenticationHttpBasicApi
 
-    fun getCenterApi(): CentersApi?
+    fun getCenterApi(): CentersApi
 
-    fun getClientsApi(): ClientApi?
+    fun getClientsApi(): ClientApi
 
-    fun getDataTableApi(): DataTablesApi?
+    fun getDataTableApi(): DataTablesApi
 
-    fun getLoanApi(): LoansApi?
+    fun getLoanApi(): LoansApi
 
-    fun getSavingsApi(): SavingsAccountApi?
+    fun getSavingsApi(): SavingsAccountApi
 
-    fun getSearchApi(): SearchApiApi?
+    fun getSearchApi(): SearchApiApi
 
-    fun getGroupApi(): GroupsApi?
+    fun getGroupApi(): GroupsApi
 
-    fun getDocumentApi(): DocumentsApiFixed?
+    fun getDocumentApi(): DocumentsApiFixed
 
-    fun getOfficeApi(): OfficesApi?
+    fun getOfficeApi(): OfficesApi
 
-    fun getStaffApi(): StaffApi?
+    fun getStaffApi(): StaffApi
 
-    fun getSurveyApi(): SpmSurveysApi?
+    fun getSurveyApi(): SpmSurveysApi
 
-    fun getChargeApi(): ChargesApi?
+    fun getChargeApi(): ChargesApi
 
-    fun getRunReportsService(): RunReportsApi?
+    fun getRunReportsService(): RunReportsApi
 
-    fun getNoteApi(): NotesApi?
+    fun getNoteApi(): NotesApi
 
-    fun getCollectionSheetApi(): CentersApi?
+    fun getCollectionSheetApi(): CentersApi
 
-    fun getCheckerInboxApi(): AuditsApi?
+    fun getCheckerInboxApi(): AuditsApi
 
-    fun getRescheduleLoansApi(): LoanReschedulingApi?
+    fun getRescheduleLoansApi(): LoanReschedulingApi
 }

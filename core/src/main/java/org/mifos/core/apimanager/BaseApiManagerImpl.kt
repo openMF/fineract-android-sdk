@@ -1,80 +1,74 @@
 package org.mifos.core.apimanager
 
-import com.google.gson.GsonBuilder
+import com.google.gson.Gson
+import org.apache.fineract.client.services.*
 import org.apache.fineract.client.util.FineractClient
 import org.mifos.core.apimanager.MifosOkHttpClient.mifosOkHttpClient
 import org.mifos.core.sharedpreference.UserPreferences
-import org.mifos.core.utils.JsonDateSerializer
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import java.util.*
 
 /**
  * Created by grandolf49 on 06-06-2020
  *
  * A class to provide the Retrofit service to the SDK
  */
-class BaseApiManagerImpl(private val userPreferences: UserPreferences) : BaseApiManager {
+class BaseApiManagerImpl : BaseApiManager {
 
-    private var client: FineractClient? = null
+    private lateinit var client: FineractClient
 
-    override fun createService(username: String, password: String) {
+    override fun createService(username: String, password: String, baseUrl: String, tenant: String) {
         val builder = FineractClient.builder()
-            .baseURL(userPreferences.getInstanceUrl())
+            .baseURL(baseUrl)
             .basicAuth(username, password)
-            .tenant(userPreferences.getTenant())
+            .tenant(tenant)
 
         builder.retrofitBuilder.addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(
-                GsonConverterFactory.create(
-                    GsonBuilder().registerTypeAdapter(
-                        Date::class.java,
-                        JsonDateSerializer()
-                    ).create()
-                )
-            ).addCallAdapterFactory(RxJava2CallAdapterFactory.create()).client(mifosOkHttpClient)
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(Gson()))
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create()).client(mifosOkHttpClient)
 
         client = builder.build()
     }
 
     override fun getClient(): FineractClient {
-        return client!!
+        return client
     }
 
-    override fun getAuthApi() = client?.authentication
+    override fun getAuthApi(): AuthenticationHttpBasicApi = client.authentication
 
-    override fun getCenterApi() = client?.centers
+    override fun getCenterApi(): CentersApi = client.centers
 
-    override fun getClientsApi() = client?.clients
+    override fun getClientsApi(): ClientApi = client.clients
 
-    override fun getDataTableApi() = client?.dataTables
+    override fun getDataTableApi(): DataTablesApi = client.dataTables
 
-    override fun getLoanApi() = client?.loans
+    override fun getLoanApi(): LoansApi = client.loans
 
-    override fun getSavingsApi() = client?.savingsAccounts
+    override fun getSavingsApi(): SavingsAccountApi = client.savingsAccounts
 
-    override fun getSearchApi() = client?.search
+    override fun getSearchApi(): SearchApiApi = client.search
 
-    override fun getGroupApi() = client?.groups
+    override fun getGroupApi(): GroupsApi = client.groups
 
-    override fun getDocumentApi() = client?.documents
+    override fun getDocumentApi(): DocumentsApiFixed = client.documents
 
-    override fun getOfficeApi() = client?.offices
+    override fun getOfficeApi(): OfficesApi = client.offices
 
-    override fun getStaffApi() = client?.staff
+    override fun getStaffApi(): StaffApi = client.staff
 
-    override fun getSurveyApi() = client?.surveys
+    override fun getSurveyApi(): SpmSurveysApi = client.surveys
 
-    override fun getChargeApi() = client?.charges
+    override fun getChargeApi(): ChargesApi = client.charges
 
-    override fun getRunReportsService() = client?.reportsRun
+    override fun getRunReportsService(): RunReportsApi = client.reportsRun
 
-    override fun getNoteApi() = client?.notes
+    override fun getNoteApi(): NotesApi = client.notes
 
-    override fun getCollectionSheetApi() = client?.centers
+    override fun getCollectionSheetApi(): CentersApi = client.centers
 
-    override fun getCheckerInboxApi() = client?.audits
+    override fun getCheckerInboxApi(): AuditsApi = client.audits
 
-    override fun getRescheduleLoansApi() = client?.loanSchedules
+    override fun getRescheduleLoansApi(): LoanReschedulingApi = client.loanSchedules
 }

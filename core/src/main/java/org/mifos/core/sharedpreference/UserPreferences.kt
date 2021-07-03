@@ -1,25 +1,23 @@
 package org.mifos.core.sharedpreference
 
-import android.content.Context
 import android.text.TextUtils
 import org.mifos.core.apimanager.BaseUrl
-import org.mifos.core.models.user.User
 
 /**
- * Shared preferences concrete class for managing user related data
+ * Shared preferences abstract class for managing user related data
  * @author Danish Jamal - http://github.com/danishjamal104/
- * @property context the context to which this preference belong/bind to
  * @constructor returns the [UserPreferences] instance for managing user related data
+ * @param USER the generic user class
  */
-class UserPreferences(context: Context) : BasePreferenceManager(context) {
+abstract class UserPreferences<USER> : BasePreferenceManager() {
+
+    abstract fun saveUser(user: USER)
+
+    abstract fun getUser(): USER
 
     /**
      * Authentication
      */
-
-    fun saveUser(value: User) = put(Key.USER_DETAILS, value)
-
-    fun getUser() = get<User>(Key.USER_DETAILS)
 
     fun saveToken(token: String?) = put(Key.TOKEN, token)
 
