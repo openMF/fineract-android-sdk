@@ -38,22 +38,16 @@ object MifosOkHttpClient {
             sslContext.init(null, trustAllCerts, SecureRandom())
             val builder = OkHttpClient.Builder()
 
-            builder.sslSocketFactory(sslContext.socketFactory, trustAllCerts[0] as X509TrustManager)
+            builder.sslSocketFactory(sslContext.socketFactory)
             builder.hostnameVerifier(HostnameVerifier { _, _ -> true })
-
-            //Enable Full Body Logging
 
             //Enable Full Body Logging
             val logger = HttpLoggingInterceptor()
             logger.setLevel(HttpLoggingInterceptor.Level.BODY)
 
             //Setting Timeout 30 Seconds
-
-            //Setting Timeout 30 Seconds
             builder.connectTimeout(60, TimeUnit.SECONDS)
             builder.readTimeout(60, TimeUnit.SECONDS)
-
-            //Interceptor :> Full Body Logger and ApiRequest Header
 
             //Interceptor :> Full Body Logger and ApiRequest Header
             builder.addInterceptor(logger)

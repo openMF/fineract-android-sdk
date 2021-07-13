@@ -2,7 +2,6 @@ package org.mifos.core.apimanager
 
 import org.apache.fineract.client.services.*
 import org.apache.fineract.client.util.FineractClient
-import org.mifos.core.sharedpreference.UserPreferences
 
 interface BaseApiManager {
 

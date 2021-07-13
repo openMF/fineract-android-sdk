@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 29
@@ -37,29 +36,28 @@ dependencies {
     //testing dependency
     androidTestImplementation "com.google.truth:truth:1.1.3"
 
-    implementation 'com.github.openMF:fineract-client:2.1.0-alpha'
-
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"){
-        version {
-            strictly "$kotlin_version"
-        }
+        force true
     }
-
-
-    // Retrofit and OkHttp
-    def retrofit_version = '2.9.0'
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
 
     implementation 'io.reactivex:rxjava:1.1.4'
 
-    def okhttp_version = '3.14.9'
-    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    //Square dependencies
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersionLatest") {
+        // exclude Retrofit’s OkHttp peer-dependency module and define your own module import
+        exclude module: 'okhttp'
+    }
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersionLatest"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofitVersionLatest"
+    implementation "com.squareup.retrofit2:adapter-rxjava:$retrofitVersionLatest"
+    implementation "com.squareup.okhttp3:okhttp:$okHttp3Version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttp3Version"
 
     //Shared Preferences
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation "androidx.preference:preference:$preference"
+
+    implementation ("com.github.danishjamal104:fineract-client:$fineractClientVersion") {
+        exclude module: 'okhttp'
+    }
 
 }

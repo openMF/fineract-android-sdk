@@ -4,7 +4,6 @@ import com.google.gson.Gson
 import org.apache.fineract.client.services.*
 import org.apache.fineract.client.util.FineractClient
 import org.mifos.core.apimanager.MifosOkHttpClient.mifosOkHttpClient
-import org.mifos.core.sharedpreference.UserPreferences
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
@@ -27,7 +26,8 @@ class BaseApiManagerImpl : BaseApiManager {
         builder.retrofitBuilder.addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(Gson()))
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create()).client(mifosOkHttpClient)
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .client(mifosOkHttpClient)
 
         client = builder.build()
     }
