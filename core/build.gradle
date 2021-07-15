@@ -8,7 +8,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        minSdkVersion 22
+        minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -23,37 +23,41 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.3.0'
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    // Retrofit and OkHttp
-    def retrofit_version = '2.9.0'
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
-    def okhttp_version = '3.14.9'
-    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    //testing dependency
+    androidTestImplementation "com.google.truth:truth:1.1.3"
 
-    // RxJava
-    implementation "io.reactivex.rxjava2:rxjava:2.2.19"
-    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"){
+        force true
+    }
 
-    // Reactive Streams
-    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:2.2.0"
+    implementation 'io.reactivex:rxjava:1.1.4'
+
+    //Square dependencies
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersionLatest") {
+        // exclude Retrofit’s OkHttp peer-dependency module and define your own module import
+        exclude module: 'okhttp'
+    }
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersionLatest"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofitVersionLatest"
+    implementation "com.squareup.retrofit2:adapter-rxjava:$retrofitVersionLatest"
+    implementation "com.squareup.okhttp3:okhttp:$okHttp3Version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttp3Version"
 
     //Shared Preferences
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation "androidx.preference:preference:$preference"
+
+    implementation ("com.github.danishjamal104:fineract-client:$fineractClientVersion") {
+        exclude module: 'okhttp'
+    }
 
 }
