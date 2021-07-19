@@ -56,8 +56,6 @@ dependencies {
     //Shared Preferences
     implementation "androidx.preference:preference:$preference"
 
-    implementation ("com.github.danishjamal104:fineract-client:$fineractClientVersion") {
-        exclude module: 'okhttp'
-    }
+    implementation ("com.github.openMF:fineract-client:$fineractClientVersion")
 
 }

@@ -62,7 +62,5 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttp3Version"
 
     implementation project(path: ':core')
-    implementation ("com.github.danishjamal104:fineract-client:$fineractClientVersion") {
-        exclude module: 'okhttp'
-    }
+    implementation ("com.github.openMF:fineract-client:$fineractClientVersion")
 }

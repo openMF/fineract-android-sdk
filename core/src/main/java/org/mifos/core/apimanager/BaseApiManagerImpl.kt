@@ -17,11 +17,12 @@ class BaseApiManagerImpl : BaseApiManager {
 
     private lateinit var client: FineractClient
 
-    override fun createService(username: String, password: String, baseUrl: String, tenant: String) {
+    override fun createService(username: String, password: String, baseUrl: String, tenant: String, secured: Boolean) {
         val builder = FineractClient.builder()
             .baseURL(baseUrl)
             .basicAuth(username, password)
             .tenant(tenant)
+            .insecure(!secured)
 
         builder.retrofitBuilder.addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(ScalarsConverterFactory.create())
