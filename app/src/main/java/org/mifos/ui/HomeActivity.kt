@@ -6,6 +6,8 @@ import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import org.apache.fineract.client.models.GetClientsClientIdAccountsResponse
+import org.apache.fineract.client.models.GetClientsClientIdResponse
 import org.apache.fineract.client.models.PostAuthenticationResponse
 import org.mifos.R
 import org.mifos.core.apimanager.BaseApiManager
@@ -47,6 +49,7 @@ class HomeActivity : AppCompatActivity(){
                 override fun onNext(t: PostAuthenticationResponse?) {
                     Log.i("subscriber", "next: ${t.toString()}")
                     setText("next: ${t.toString()}")
+                    getClientAccounts(1)
                 }
 
             })
@@ -55,6 +58,52 @@ class HomeActivity : AppCompatActivity(){
 
     fun setText(text: String) {
         findViewById<TextView>(R.id.text).text = text
+    }
+
+    fun getClient(clientId: Long) {
+        baseApiManager.getClientsApi().retrieveOne11(clientId, false)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : Subscriber<GetClientsClientIdResponse>() {
+                override fun onCompleted() {
+                    Log.i("subscriber", "completed")
+                    setText("completed")
+                }
+
+                override fun onError(e: Throwable?) {
+                    Log.i("subscriber", "error: ${e?.localizedMessage}")
+                    setText("error: ${e?.localizedMessage}")
+                }
+
+                override fun onNext(t: GetClientsClientIdResponse?) {
+                    Log.i("subscriber", "next: ${t.toString()}")
+                    setText("next: ${t.toString()}")
+                }
+
+            })
+    }
+
+    fun getClientAccounts(clientId: Long) {
+        baseApiManager.getClientsApi().retrieveAssociatedAccounts(clientId)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : Subscriber<GetClientsClientIdAccountsResponse>() {
+                override fun onCompleted() {
+                    Log.i("subscriber", "completed")
+                    setText("completed")
+                }
+
+                override fun onError(e: Throwable?) {
+                    Log.i("subscriber", "error: ${e?.localizedMessage}")
+                    setText("error: ${e?.localizedMessage}")
+                }
+
+                override fun onNext(t: GetClientsClientIdAccountsResponse?) {
+                    Log.i("subscriber", "next: ${t.toString()}")
+                    setText("next: ${t.toString()}")
+                }
+
+            })
     }
 
 }
