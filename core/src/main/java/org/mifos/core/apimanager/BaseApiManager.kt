@@ -11,7 +11,7 @@ interface BaseApiManager {
         }
     }
 
-    fun createService(username: String, password: String, baseUrl: String, tenant: String)
+    fun createService(username: String, password: String, baseUrl: String, tenant: String = "default", secured: Boolean = true)
 
     fun getClient(): FineractClient
 
