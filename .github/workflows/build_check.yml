@@ -14,6 +14,15 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      # Cache dependencies
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.OS }}-gradle-cache-${{ hashFiles('**/build.gradle') }}
+
       - name: Set Up JDK
         uses: actions/setup-java@v1
         with:
