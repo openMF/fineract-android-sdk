@@ -33,7 +33,7 @@ To add library in your gradle project follow the steps below:
 2. Add the dependency
    ```groovy
    dependencies {
-       def sdk_Version = '1.0.0'
+       def sdk_Version = '1.0.1'
        implementation "com.github.openMF:mifos-android-sdk-arch:$sdk_Version"
    }
    ```

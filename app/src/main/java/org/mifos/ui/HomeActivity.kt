@@ -6,9 +6,7 @@ import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import org.apache.fineract.client.models.GetClientsClientIdAccountsResponse
-import org.apache.fineract.client.models.GetClientsClientIdResponse
-import org.apache.fineract.client.models.PostAuthenticationResponse
+import org.apache.fineract.client.models.*
 import org.mifos.R
 import org.mifos.core.apimanager.BaseApiManager
 import rx.Subscriber
@@ -18,7 +16,7 @@ import java.util.*
 
 class HomeActivity : AppCompatActivity(){
 
-    val base_url = "https://demo.fineract.dev/fineract-provider/api/v1/"
+    val base_url = "https://10.0.2.2:8443/fineract-provider/api/v1/"
     val tenant = "default"
     lateinit var baseApiManager: BaseApiManager
 
@@ -28,11 +26,15 @@ class HomeActivity : AppCompatActivity(){
 
 
         baseApiManager = BaseApiManager.getInstance()
-        baseApiManager.createService("mifos", "password", base_url, tenant)
+        baseApiManager.createService("mifos", "password", base_url, tenant, false)
 
         val body = "{\"username\": \"mifos\", \"password\": \"password\"}"
 
-        baseApiManager.getAuthApi().authenticate(true, body)
+        val req = PostAuthenticationRequest();
+        req.username = "mifos"
+        req.password = "password"
+
+        baseApiManager.getAuthApi().authenticate(req, true)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(object : Subscriber<PostAuthenticationResponse>() {
@@ -49,7 +51,7 @@ class HomeActivity : AppCompatActivity(){
                 override fun onNext(t: PostAuthenticationResponse?) {
                     Log.i("subscriber", "next: ${t.toString()}")
                     setText("next: ${t.toString()}")
-                    getClientAccounts(1)
+                    getClientTemplate()
                 }
 
             })
@@ -99,6 +101,29 @@ class HomeActivity : AppCompatActivity(){
                 }
 
                 override fun onNext(t: GetClientsClientIdAccountsResponse?) {
+                    Log.i("subscriber", "next: ${t.toString()}")
+                    setText("next: ${t.toString()}")
+                }
+
+            })
+    }
+
+    fun getClientTemplate() {
+        baseApiManager.getClientsApi().retrieveTemplate5(null, null, null)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object: Subscriber< GetClientsTemplateResponse>() {
+                override fun onCompleted() {
+                    Log.i("subscriber", "completed")
+                    setText("completed")
+                }
+
+                override fun onError(e: Throwable?) {
+                    Log.i("subscriber", "error: ${e?.localizedMessage}")
+                    setText("error: ${e?.localizedMessage}")
+                }
+
+                override fun onNext(t: GetClientsTemplateResponse?) {
                     Log.i("subscriber", "next: ${t.toString()}")
                     setText("next: ${t.toString()}")
                 }
