@@ -31,7 +31,7 @@ ext {
     rxJavaVersion = '1.1.4'
     rxAndroidVersion = '1.1.0'
 
-    fineractClientVersion = '2.0.2'
+    fineractClientVersion = '2.0.3'
 }
 
 allprojects {
