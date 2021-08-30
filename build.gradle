@@ -29,7 +29,7 @@ ext {
     okHttp3Version = '3.5.0'
     preference = '1.1.0'
     rxJavaVersion = '1.1.4'
-    rxAndroidVersion = '1.1.0'
+    rxAndroidVersion = '1.2.1'
 
     fineractClientVersion = '2.0.3'
 }
