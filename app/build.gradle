@@ -26,6 +26,10 @@ android {
         abortOnError false
     }
 
+    packagingOptions {
+        exclude 'META-INF/core_release.kotlin_module'
+    }
+
 }
 
 dependencies {
@@ -62,6 +66,6 @@ dependencies {
 
     implementation project(path: ':core')
 
-    // fineract dependency 
+    // fineract dependency
     implementation ("com.github.openMF:fineract-client:$fineractClientVersion")
 }
