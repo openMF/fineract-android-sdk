@@ -1,24 +1,24 @@
 package org.mifos.ui
 
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.apache.fineract.client.models.*
 import org.mifos.R
 import org.mifos.core.apimanager.BaseApiManager
+import org.mifos.core.apimanager.BaseUrl.Companion.API_ENDPOINT
+import org.mifos.core.apimanager.BaseUrl.Companion.API_PATH
+import org.mifos.core.apimanager.BaseUrl.Companion.PROTOCOL_HTTPS
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import java.util.*
 
 class HomeActivity : AppCompatActivity(){
 
-    val base_url = "https://10.0.2.2:8443/fineract-provider/api/v1/"
-    val tenant = "default"
-    lateinit var baseApiManager: BaseApiManager
+    private val baseUrl = PROTOCOL_HTTPS+ API_ENDPOINT+ API_PATH
+    private val tenant = "default"
+    private lateinit var baseApiManager: BaseApiManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +26,7 @@ class HomeActivity : AppCompatActivity(){
 
 
         baseApiManager = BaseApiManager.getInstance()
-        baseApiManager.createService("mifos", "password", base_url, tenant, false)
+        baseApiManager.createService("mifos", "password", baseUrl, tenant, false)
 
         val body = "{\"username\": \"mifos\", \"password\": \"password\"}"
 
