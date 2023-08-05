@@ -50,7 +50,7 @@ ext {
     espressoVersion = '2.2.2'
 
     // retrofit version
-    retrofitVersionLatest = '2.2.0'
+    retrofitVersionLatest = '2.9.0'
 
     // okHttp3 version
     okHttp3Version = '4.9.2'
