@@ -38,7 +38,7 @@ object MifosOkHttpClient {
             sslContext.init(null, trustAllCerts, SecureRandom())
             val builder = OkHttpClient.Builder()
 
-            builder.sslSocketFactory(sslContext.socketFactory)
+            builder.sslSocketFactory(sslContext.socketFactory,trustAllCerts[0] as X509TrustManager)
             builder.hostnameVerifier(HostnameVerifier { _, _ -> true })
 
             //Enable Full Body Logging

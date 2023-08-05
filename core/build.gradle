@@ -1,15 +1,14 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 29
+        minSdkVersion 26
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -23,24 +22,28 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/core_release.kotlin_module'
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
+    testImplementation "junit:junit:$rootProject.jUnitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.androidJUnitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.androidEsspressoVersion"
 
 
     //testing dependency
-    androidTestImplementation "com.google.truth:truth:1.1.3"
+    androidTestImplementation "com.google.truth:truth:$rootProject.truthVersion"
 
-    implementation ("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"){
-        force true
-    }
+    // Kotlin standard library dependency
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    implementation 'io.reactivex:rxjava:1.1.4'
+    // rxJava dependency
+    implementation "io.reactivex:rxjava:$rxJavaVersion"
 
     //Square dependencies
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersionLatest") {
@@ -53,9 +56,10 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okHttp3Version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttp3Version"
 
-    //Shared Preferences
+    //Shared Preferences dependency
     implementation "androidx.preference:preference:$preference"
 
+    // fineractClient dependency
     implementation ("com.github.openMF:fineract-client:$fineractClientVersion")
 
 }
