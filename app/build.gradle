@@ -2,7 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    namespace 'org.mifos'
+    compileSdk rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
@@ -29,15 +30,19 @@ android {
     packagingOptions {
         exclude 'META-INF/core_release.kotlin_module'
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 
 }
 
 dependencies {
-    //implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.multidex:multidex:$rootProject.multidexVersion"
-    implementation ("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"){
-        force true
-    }
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     testImplementation "junit:junit:$rootProject.jUnitVersion"
     androidTestImplementation "androidx.test.ext:junit:$rootProject.androidJUnitVersion"
@@ -64,7 +69,7 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okHttp3Version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttp3Version"
 
-    implementation project(path: ':core')
+    implementation project(':core')
 
     // fineract dependency
     implementation ("com.github.openMF:fineract-client:$fineractClientVersion")

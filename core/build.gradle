@@ -1,9 +1,11 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'maven-publish'
 
 android {
-    compileSdkVersion 33
+    namespace 'org.mifos.core'
+    compileSdk 33
     buildToolsVersion "29.0.3"
 
     defaultConfig {
@@ -26,10 +28,16 @@ android {
     packagingOptions {
         exclude 'META-INF/core_release.kotlin_module'
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     testImplementation "junit:junit:$rootProject.jUnitVersion"
     androidTestImplementation "androidx.test.ext:junit:$rootProject.androidJUnitVersion"
@@ -57,9 +65,23 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttp3Version"
 
     //Shared Preferences dependency
-    implementation "androidx.preference:preference:$preference"
+    implementation "androidx.preference:preference-ktx:$preference"
 
     // fineractClient dependency
     implementation ("com.github.openMF:fineract-client:$fineractClientVersion")
 
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.github.openMF'
+            artifactId = 'mifos-android-sdk-arch'
+            version = '1.0.6'
+
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
 }
