@@ -41,7 +41,7 @@ ext {
     androidJUnitVersion = '1.1.5'
 
     // android espresso
-    androidEsspressoVersion = '3.5.1'
+    androidEsspressoVersion = '3.6.1'
 
     // App dependencies
     supportLibraryVersion = '27.1.1'
