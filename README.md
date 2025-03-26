@@ -1,3 +1,8 @@
+## 🚨 Deprecation Notice
+The Fineract Android SDK (https://github.com/openMF/fineract-android-sdk) is now deprecated and will no longer receive updates or active support.
+We recommend migrating to our new and improved, multiplatform-compatible SDK:
+👉 Fineract Kotlin Multiplatform SDK: https://github.com/openMF/fineract-client-kmp-sdk/
+
 # Mifos Android Architecture
 This is architecture repository for mifos-android-sdk
 
