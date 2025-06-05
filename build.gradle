@@ -32,7 +32,7 @@ ext {
     lifecycleVersion = '2.2.0'
 
     // appcompat version
-    appCompatVersion = '1.6.1'
+    appCompatVersion = '1.7.1'
 
     // jUnit version
     jUnitVersion = '4.13.2'
